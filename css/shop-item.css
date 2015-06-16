@@ -3,7 +3,7 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
-@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+/*@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);*/
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
@@ -41,11 +41,16 @@ footer {
 .home-combos{
     margin-right: 3%;
 }
+
 .home-form{
-    padding: 0 15%;
+    padding: 0 16%;
 }
 .home-content{
     padding: 0 20%;
+
+}
+.form-group.home-combos.ng-scope{
+    padding: 0 6% 0 0;
 }
 .navbar-control{
     width: 92% !important;

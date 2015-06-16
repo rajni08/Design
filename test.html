@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="homeng">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Item - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/shop-item.css" rel="stylesheet">
+
+    <script src="js/angular.js"></script>
+    <script type="text/javascript" >
+        // menu angular controller
+        var homeng=angular.module('homeng',[]);
+
+        homeng.controller('menungcnt', function($scope,$http){
+            $http.get('client/menu.json',function(data){
+                $scope.mainmenus=data;
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-repeat="mainmenu in mainmenus">
+                    <a href="#">{{mainmenu.code}}</a>
+                </li>
+
+
+                </ul>
+
+</body>
+
+</html>
