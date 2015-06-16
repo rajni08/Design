@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" myapp>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Item - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/shop-item.css" rel="stylesheet">
+    <script src="js/angular.js" type="text/javascript"></script>
+<script>
+    app = angular.module("myapp", []);
+app.controller("MainController", function($scope, $http) {
+  $scope.menus = [
+  {
+    title: "Menu1", 
+    action: "#", 
+    menus: [
+      {
+        title: "Submenu 1a",
+        action: "stuff"
+      },
+      {
+        title: "Submenu 1b",
+        action: "moreStuff",
+        menus: [
+          {
+            title: "Submenu 1b 1",
+            action: "stuff"
+          },
+          {
+            title: "Submenu 1b 2",
+            action: "moreStuff"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    title: "Menu2", 
+    action: "#", 
+    menus: [
+      {
+        title: "Submenu 2a",
+        action: "awesomeStuff"
+      },
+      {
+        title: "Submenu 2b",
+        action: "moreAwesomeStuff"
+      }
+    ]
+  }
+]
+});
+
+$(document).ready(function() {});
+    </script>    
+
+</head>
+
+<body>
+
+   <div class="container" ng-app="myapp">
+  <h3>AngularJS Bootstrap 3 Menu Example</h3>
+  <div ng-controller="MainController">
+    <div class="navbar navbar-default ">
+      <ul class="nav navbar-nav">
+        <li ng-class="{dropdown: menu.menus}" ng-repeat="menu in menus">
+          <a href="{{menu.action}}" data-toggle="dropdown" ng-class="{'dropdown-toggle': menu.menus}">{{menu.title}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" ng-if="menu.menus">
+            <li ng-repeat="submenu in menu.menus">
+              <a href="{{submenu.action}}">{{submenu.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    <hr>
+    <h3>Sidebar / Tree</h3>
+    <div class="col-sm-3">
+      <ul class="nav nav-stacked">
+        <li ng-class="{dropdown: menu.menus}" ng-repeat="menu in menus">
+          <a href="{{menu.action}}" data-toggle="dropdown" ng-class="{'dropdown-toggle': menu.menus}">{{menu.title}}</a>
+          <ul class="nav nav-stacked" ng-if="menu.menus">
+            <li ng-class="{dropdown: submenu.menus}" ng-repeat="submenu in menu.menus">
+              <a href="{{submenu.action}}" data-toggle="dropdown" ng-class="{'dropdown-toggle': submenu.menus}"><i class="glyphicon glyphicon-chevron-right"></i> {{submenu.title}}</a>
+              
+              <ul class="dropdown-menu" ng-if="submenu.menus">
+                <li ng-repeat="subsubmenu in submenu.menus">
+                  <a href="{{subsubmenu.action}}">{{subsubmenu.title}}</a>
+                </li>
+          	   </ul>
+              
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    
+    
+  </div>
+</div>
+</body>
+
+</html>
