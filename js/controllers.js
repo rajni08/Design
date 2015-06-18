@@ -2,59 +2,90 @@
 // Angular Module
 
     var homeng=angular.module('homeng',[]);
+
 //include Common menu in angular js
+
+
+homeng.config(['$routeProvider',
+    function($routeProvider) {
+        $routeProvider.
+
+            when('/', {
+                templateUrl: 'includes/home.html',
+                controller: 'homecontroller'
+            }).
+            when('/products', {
+                templateUrl: 'includes/products.html',
+                controller: 'productcontroller'
+            }).
+            when('/login', {
+                templateUrl: 'includes/login.html',
+                controller: 'logincontroller'
+            }).
+            when('/search', {
+                templateUrl: 'includes/searchpage.html',
+                controller: 'search'
+            }).
+            otherwise({
+
+                redirectTo: '/'
+            });
+    }]);
 
 // menu angular controller
 
-    homeng.controller('menungcnt', function($scope,$http){
+//home page controller
+
+    homeng.controller('homecontroller', function($scope,$http){
         $http.get('client/menu.json').success(function(data){
-            $scope.mainmenus=data;
 
-        });
-    });
+            $scope.menus =data;
 
-//Combo box 1 values
+           });
 
-    homeng.controller('combocnt1', function($scope,$http){
+        //Combo box 1 values
         $http.get('client/combo1s.json').success(function(data){
-          $scope.combo1s=data;
+            $scope.combo1s=data;
+        });
+
+        //Combo box 2 values
+        $http.get('client/combo2s.json').success(function(data){
+            $scope.combo2s=data;
+        });
+        //Combo box 3 values
+        $http.get('client/combo3s.json').success(function(data){
+            $scope.combo3s=data;
+        });
+
+
+    });
+
+//Product Controller
+
+    homeng.controller('productcontroller', function($scope,$http){
+        $http.get('client/product.json').success(function(data){
+            $scope.productdata=data;
+
+
         });
     });
 
-//Combo box 2 values
+//Login Controller
+    homeng.controller('logincontroller', function($scope,$http){
 
-homeng.controller('combocnt2', function($scope,$http){
-    $http.get('client/combo2s.json').success(function(data){
-        $scope.combo2s=data;
     });
-});
-//Combo box 3 values
 
-homeng.controller('combocnt3', function($scope,$http){
-    $http.get('client/combo3s.json').success(function(data){
-        $scope.combo3s=data;
-    });
-});
+function slideShowController($scope, $timeout) {
+    var slidesInSlideshow = 4;
+    var slidesTimeIntervalInMs = 5000;
 
-// configure our routes
-homeng.config(function($routeProvider) {
-    $routeProvider
+    $scope.slideshow = 1;
+    var slideTimer =
+        $timeout(function interval() {
+            $scope.slideshow = ($scope.slideshow % slidesInSlideshow) + 1;
+            slideTimer = $timeout(interval, slidesTimeIntervalInMs);
+        }, slidesTimeIntervalInMs);
+}
 
-        // route for the home page
-        .when('/', {
-            templateUrl : 'index.html',
-            controller  : 'cereals'
-        })
 
-        // route for the about page
-        .when('/about', {
-            templateUrl : 'cartpage.html',
-            controller  : 'bread'
-        })
 
-        // route for the contact page
-        .when('/contact', {
-            templateUrl : 'pages/contact.html',
-            controller  : 'contactController'
-        });
-});

@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 search-bar">
+
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="Search" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+            <p class="lead">Shop Name</p>
+            <div class="list-group">
+
+                <a class="list-group-item active" href="#">Category 1</a>
+                <a class="list-group-item" href="#">Category 2</a>
+                <a class="list-group-item" href="#">Category 3</a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+            <div class="thumbnail">
+                <img alt="" src="http://placehold.it/800x300" class="img-responsive">
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>
+                    Some Text</h3>
+                <hr>
+            </div>
+
+        </div>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="row">
+
+                        <div class="col-sm-2" ng-repeat="product in productdata">
+                            <div class="col-item">
+                                <div class="photo">
+                                    <img src="{{product.imageUrl}}" class="img-responsive" alt="a" />
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-md-12">
+                                            <h5>
+                                                {{product.productname}}-{{product.id}}</h5>
+                                            <h5 class="price-text-color">
+                                                ${{product.price}}</h5>
+                                        </div>
+
+                                    </div>
+                                    <div class="separator clear-left">
+
+                                        <p class="btn-add">
+                                            <input type="number" value="1" class="form-control text-center"
+                                                   min="1"></p>
+                                        <p class="btn-details">
+                                            <a href="#" class="hidden-sm btn btn-group-sm btn-primary"> <i
+                                                    class="fa fa-shopping-cart"></i>Add
+                                            </a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
