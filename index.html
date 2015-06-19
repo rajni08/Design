@@ -59,15 +59,15 @@
                     <!--<a ng-href="#/{{mainmenu.description['friendlyUrl']}}" title="{{mainmenu.description['title']}}">{{mainmenu.description['name']}}</a>-->
                 <!--</li>-->
 
-        <li class="prod-dropdown" ng-repeat="menu in menus" ng-class="{prod-dropdown: menu.menus}">
-                <a ng-href="#/{{menu.action}}" ng-class="{'dropdown-toggle': menu.menus}"
-                   data-toggle="dropdown">{{menu.title}} </a>
-                <ul ng-if="menu.menus" class="dropdown-menu">
-                    <li ng-repeat="submenu in menu.menus">
-                     <a ng-href="#/{{submenu.action}}">{{submenu.title}}</a>
-                    </li>
-                </ul>
-        </li>
+                <li class="prod-dropdown" ng-repeat="menu in menus" ng-class="{prod-dropdown: menu.menus}">
+                    <a ng-href="#/{{menu.action}}" ng-class="{'dropdown-toggle': menu.menus}"
+                       data-toggle="dropdown">{{menu.title}} </a>
+                    <ul ng-if="menu.menus" class="dropdown-menu">
+                        <li ng-repeat="submenu in menu.menus">
+                            <a ng-href="#/{{submenu.action}}">{{submenu.title}}</a>
+                        </li>
+                    </ul>
+                </li>
 
                 <!--<li class="prod-dropdown" >-->
                     <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>-->
@@ -159,6 +159,8 @@
 <div class="container">
 
     <hr>
+
+iv>
 
     <!-- Footer -->
     <footer>

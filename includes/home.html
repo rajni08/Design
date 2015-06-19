@@ -50,28 +50,40 @@
 
                             <div class="form-group home-combos" >
 
-                                <select name="" class="form-control input-md">
-                                    <option ng-repeat="combo1 in combo1s" value="{{combo1.option['id']}}">{{combo1.option['name']}}</option>
-
+                                <select id="country" ng-model="cities" class="form-control input-md"
+                                        ng-options="country for (country, cities) in countries">
+                                    <option value=''>------Select------</option>
                                 </select>
+                                <!--<select name="" class="form-control input-md">-->
+                                    <!--<option ng-repeat="combo1 in combo1s" value="{{combo1.option['id']}}">{{combo1.option['name']}}</option>-->
+
+                                <!--</select>-->
 
                             </div>
 
                             <div class="form-group home-combos" >
 
-                                <select name="" class="form-control input-md">
-                                    <option ng-repeat="combo2 in combo2s" value="{{combo2.option['id']}}">{{combo2.option['name']}}</option>
-                                </select>
+                                 <select id="city" ng-disabled="!cities" class="form-control input-md" ng-model="suburbs"
+                                         ng-options="city for (city, suburbs) in cities">
+                                    <option value=''>------Select------</option>
+                                 </select>
+
+                                <!--<select name="" class="form-control input-md">-->
+                                    <!--<option ng-repeat="combo2 in combo2s" value="{{combo2.option['id']}}">{{combo2.option['name']}}</option>-->
+                                <!--</select>-->
 
                             </div>
 
 
                             <div class="form-group home-combos" >
-
-
-                                <select name="" class="form-control input-md">
-                                    <option ng-repeat="combo3 in combo3s" value="{{combo3.option['id']}}">{{combo3.option['name']}}</option>
+                                <select id="suburb" ng-disabled="!suburbs" class="form-control input-md"
+                                        ng-model="suburb" ng-options="suburb for suburb in suburbs">
+                                    <option value=''>------Select------</option>
                                 </select>
+
+                                <!--<select name="" class="form-control input-md">-->
+                                    <!--<option ng-repeat="combo3 in combo3s" value="{{combo3.option['id']}}">{{combo3.option['name']}}</option>-->
+                                <!--</select>-->
 
 
                             </div>
