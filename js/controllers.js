@@ -43,19 +43,30 @@ homeng.config(['$routeProvider',
 
            });
 
-        //Combo box 1 values
-        $http.get('client/combo1s.json').success(function(data){
-            $scope.combo1s=data;
-        });
 
-        //Combo box 2 values
-        $http.get('client/combo2s.json').success(function(data){
-            $scope.combo2s=data;
-        });
-        //Combo box 3 values
-        $http.get('client/combo3s.json').success(function(data){
-            $scope.combo3s=data;
-        });
+        $scope.countries = {
+            'usa': {
+                'San Francisco': ['SOMA', 'Richmond', 'Sunset'],
+                'Los Angeles': ['Burbank', 'Hollywood']
+            },
+            'canada': {
+                'People dont live here': ['igloo', 'cave']
+            }
+        };
+
+        ////Combo box 1 values
+        //$http.get('client/combo1s.json').success(function(data){
+        //    $scope.combo1s=data;
+        //});
+        //
+        ////Combo box 2 values
+        //$http.get('client/combo2s.json').success(function(data){
+        //    $scope.combo2s=data;
+        //});
+        ////Combo box 3 values
+        //$http.get('client/combo3s.json').success(function(data){
+        //    $scope.combo3s=data;
+        //});
 
 
     });
@@ -86,6 +97,8 @@ function slideShowController($scope, $timeout) {
             slideTimer = $timeout(interval, slidesTimeIntervalInMs);
         }, slidesTimeIntervalInMs);
 }
+
+
 
 
 
