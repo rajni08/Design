@@ -58,16 +58,37 @@
                 <!--<li ng-repeat="mainmenu in mainmenus">-->
                     <!--<a ng-href="#/{{mainmenu.description['friendlyUrl']}}" title="{{mainmenu.description['title']}}">{{mainmenu.description['name']}}</a>-->
                 <!--</li>-->
+<li class="dropdown" ng-repeat="menu in menus" ng-class="{dropdown: menu.menus}">
+        <a data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown"
+           ng-class="{'dropdown-toggle': menu.menus}"
+           ng-href="#/{{menu.action}}" >
+            {{menu.description['name'] | uppercase}} <span class="caret"></span>
+        </a>
+        <ul ng-if="menu.childs" class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu" ng-repeat="submenu in menu.childs">
+                <a tabindex="-1" ng-href="#/{{submenu.description['friendlyUrl']}}">{{submenu.description['name']}}</a>
+                <ul class="dropdown-menu" ng-if="submenu.childs">
+                    <li class="dropdown-submenu" ng-repeat="subofsub in submenu.childs">
+                        <a ng-href="#/{{subofsub.description['friendlyUrl']}}">{{subofsub.description['name']}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 
-                <li class="prod-dropdown" ng-repeat="menu in menus" ng-class="{prod-dropdown: menu.menus}">
-                    <a ng-href="#/{{menu.action}}" ng-class="{'dropdown-toggle': menu.menus}"
-                       data-toggle="dropdown">{{menu.title}} </a>
-                    <ul ng-if="menu.menus" class="dropdown-menu">
-                        <li ng-repeat="submenu in menu.menus">
-                            <a ng-href="#/{{submenu.action}}">{{submenu.title}}</a>
-                        </li>
-                    </ul>
-                </li>
+</li>
+
+                <!--<li class="prod-dropdown" ng-repeat="menu in menus" ng-class="{proddropdown: menu.menus}">-->
+                    <!--<a ng-href="#/{{menu.action}}" ng-class="{'dropdown-toggle': menu.menus}"-->
+                       <!--data-toggle="dropdown">{{menu.description['name']}} </a>-->
+
+                    <!--<ul class="dropdown-menu">-->
+                    <!--<li ng-repeat="submenu in menu.childs">-->
+                        <!--<a ng-href="#/{{submenu.description['friendlyUrl']}}">{{submenu.description['name']}}</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--</li>-->
+
+
 
                 <!--<li class="prod-dropdown" >-->
                     <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>-->
@@ -84,7 +105,9 @@
 
                 <li class="dropdown">
                     <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 7 - Items<span class="caret"></span></a>
+                       aria-expanded="false" > <span
+                            class="glyphicon glyphicon-shopping-cart"></span> 7 - Items<span
+                            class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-cart" role="menu">
                         <li>
                   <span class="item">
@@ -143,7 +166,7 @@
                 </span>
                         </li>
                         <li class="divider"></li>
-                        <li><a class="text-center" href="">View Cart</a></li>
+                        <li><a class="text-center" ng-href="#/checkout">View Cart</a></li>
                     </ul>
                 </li>
             </ul>
@@ -160,13 +183,13 @@
 
     <hr>
 
-iv>
+
 
     <!-- Footer -->
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>&copy; Copyright Altiostar, 2014-2015. All rights reserved  Your Website 2015</p>
+                <p>&copy; Copyright Company name, 2014-2015. All rights reserved  Your Website 2015</p>
             </div>
         </div>
     </footer>

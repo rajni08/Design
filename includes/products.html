@@ -60,13 +60,13 @@
                         <div class="col-sm-2" ng-repeat="product in productdata">
                             <div class="col-item">
                                 <div class="photo">
-                                    <img src="{{product.imageUrl}}" class="img-responsive" alt="a" />
+                                    <a ng-href="#/productdesc"> <img src="{{product.imageUrl}}" class="img-responsive" alt="a" /></a>
                                 </div>
                                 <div class="info">
                                     <div class="row">
                                         <div class="price col-md-12">
                                             <h5>
-                                                {{product.productname}}-{{product.id}}</h5>
+                                              {{product.productname}}-{{product.id}}</h5>
                                             <h5 class="price-text-color">
                                                 ${{product.price}}</h5>
                                         </div>

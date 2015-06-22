@@ -26,6 +26,14 @@ homeng.config(['$routeProvider',
                 templateUrl: 'includes/searchpage.html',
                 controller: 'search'
             }).
+            when('/productdesc', {
+                templateUrl: 'includes/productdesc.html',
+                controller: 'search'
+            }).
+            when('/checkout', {
+                templateUrl: 'includes/checkout.html',
+                controller: 'search'
+            }).
             otherwise({
 
                 redirectTo: '/'
@@ -54,6 +62,39 @@ homeng.config(['$routeProvider',
             }
         };
 
+
+        $scope.sliders={
+            "slider":[{
+                "id" : 1,
+                "img"    : "http://farm9.staticflickr.com/8042/7918423710_e6dd168d7c_b.jpg",
+                "title"  : "Beady little eyes",
+                "expert" : "Little birds pitch by my doorstep"
+            },
+
+                {
+                    "id" : 2,
+                    "img"    : "http://farm9.staticflickr.com/8449/7918424278_4835c85e7a_b.jpg",
+                    "title"  : "Beady little eyes",
+                    "expert" : "Little birds pitch by my doorstep"
+                },
+
+                {
+                    "id" : 3,
+                    "img"    : "http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg",
+                    "title"  : "Beady little eyes",
+                    "expert" : "Little birds pitch by my doorstep"
+                },
+
+                {
+                    "id" : 4,
+                    "img"    : "http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg",
+                    "title"  : "Beady little eyes",
+                    "expert" : "Little birds pitch by my doorstep"
+                }
+
+            ]}
+
+
         ////Combo box 1 values
         //$http.get('client/combo1s.json').success(function(data){
         //    $scope.combo1s=data;
@@ -71,6 +112,20 @@ homeng.config(['$routeProvider',
 
     });
 
+
+
+function slideShowController($scope, $timeout) {
+    var slidesInSlideshow = 4;
+    var slidesTimeIntervalInMs = 5000;
+
+    $scope.slideshow = 1;
+    var slideTimer =
+        $timeout(function interval() {
+            $scope.slideshow = ($scope.slideshow % slidesInSlideshow) + 1;
+            slideTimer = $timeout(interval, slidesTimeIntervalInMs);
+        }, slidesTimeIntervalInMs);
+}
+
 //Product Controller
 
     homeng.controller('productcontroller', function($scope,$http){
@@ -86,17 +141,7 @@ homeng.config(['$routeProvider',
 
     });
 
-function slideShowController($scope, $timeout) {
-    var slidesInSlideshow = 4;
-    var slidesTimeIntervalInMs = 5000;
 
-    $scope.slideshow = 1;
-    var slideTimer =
-        $timeout(function interval() {
-            $scope.slideshow = ($scope.slideshow % slidesInSlideshow) + 1;
-            slideTimer = $timeout(interval, slidesTimeIntervalInMs);
-        }, slidesTimeIntervalInMs);
-}
 
 
 
