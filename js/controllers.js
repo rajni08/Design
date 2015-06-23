@@ -14,6 +14,10 @@ homeng.config(['$routeProvider',
                 templateUrl: 'includes/home.html',
                 controller: 'homecontroller'
             }).
+            when('/home', {
+                templateUrl: 'includes/home.html',
+                controller: 'homecontroller'
+            }).
             when('/products', {
                 templateUrl: 'includes/products.html',
                 controller: 'productcontroller'
@@ -26,13 +30,17 @@ homeng.config(['$routeProvider',
                 templateUrl: 'includes/searchpage.html',
                 controller: 'search'
             }).
-            when('/productdesc', {
+            when('/tabpage', {
+                templateUrl: 'includes/tabpage.html',
+                controller: 'tabpagecntr'
+            }).
+            when('/:productdesc', {
                 templateUrl: 'includes/productdesc.html',
-                controller: 'search'
+                controller: ''
             }).
             when('/checkout', {
-                templateUrl: 'includes/checkout.html',
-                controller: 'search'
+                templateUrl: 'includes/home.html',
+                controller: ''
             }).
             otherwise({
 
@@ -140,7 +148,14 @@ function slideShowController($scope, $timeout) {
     homeng.controller('logincontroller', function($scope,$http){
 
     });
+//Login Controller
+homeng.controller('checkoutcntr', function($scope,$http){
 
+});
+//Login Controller
+homeng.controller('tabpagecntr', function($scope,$http){
+
+});
 
 
 

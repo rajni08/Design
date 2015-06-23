@@ -53,16 +53,14 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-
-
                 <!--<li ng-repeat="mainmenu in mainmenus">-->
                     <!--<a ng-href="#/{{mainmenu.description['friendlyUrl']}}" title="{{mainmenu.description['title']}}">{{mainmenu.description['name']}}</a>-->
                 <!--</li>-->
 <li class="dropdown" ng-repeat="menu in menus" ng-class="{dropdown: menu.menus}">
         <a data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown"
            ng-class="{'dropdown-toggle': menu.menus}"
-           ng-href="#/{{menu.action}}" >
-            {{menu.description['name'] | uppercase}} <span class="caret"></span>
+           ng-href="#/{{menu.description['friendlyUrl']}}" >
+            {{menu.description['name'] | uppercase}} <span ng-if="menu.childs" class="caret"></span>
         </a>
         <ul ng-if="menu.childs" class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
             <li class="dropdown-submenu" ng-repeat="submenu in menu.childs">
@@ -74,7 +72,6 @@
                 </ul>
             </li>
         </ul>
-
 </li>
 
                 <!--<li class="prod-dropdown" ng-repeat="menu in menus" ng-class="{proddropdown: menu.menus}">-->
@@ -182,8 +179,6 @@
 <div class="container">
 
     <hr>
-
-
 
     <!-- Footer -->
     <footer>
