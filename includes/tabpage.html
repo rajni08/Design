@@ -6,162 +6,187 @@
 
 <hr>
 
+
+
 <div class="container">
+    
+
+    
     <div class="tabbable tabs-left">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#a" data-toggle="tab">One</a></li>
-            <li><a href="#b" data-toggle="tab">Two</a></li>
-            <li><a href="#c" data-toggle="tab">Twee</a></li>
-            <li><a href="#d" data-toggle="tab">Four</a></li>
+            <li ng-class="{active: main.active.tab=='a'}">
+                <a ng-click="main.active.tab='a'" data-toggle="tab">One</a>
+            </li>
+            <li ng-class="{active: main.active.tab=='b'}">
+                <a ng-click="main.active.tab='b'" data-toggle="tab">Two</a>
+            </li>
+            <li ng-class="{active: main.active.tab=='c'}">
+                <a ng-click="main.active.tab='c'" data-toggle="tab">Three</a>
+            </li>
+            <li ng-class="{active: main.active.tab=='d'}">
+                <a ng-click="main.active.tab='d'" data-toggle="tab">Four</a>
+            </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane active" id="a">
+            <div ng-switch="main.active.tab" >
+                <div ng-switch-when="a">
+                    <div class="row">
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
 
-                <div class="row">
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
+
+
                     </div>
 
-
-                </div>
-
-                <div class="row pull-right">
-                    <input type="button" name="button" class="btn btn-primary" value="Button">
-                </div>
-
+                    <div class="row pull-right">
+                        <input type="button" name="button" class="btn btn-primary" value="Button">
+                    </div>
+               </div>
             </div>
-            <div class="tab-pane" id="b">
-                <div class="row">
-                    <form class="form-inline home-form">
-                        <div class="form-group">
-                            <select name="" class="form-control input-md">
-                                <option value="">----SELECT----</option>
-                                <option value="">optin1</option>
-                                <option value="">optin2</option>
-                                <option value="">optin3</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="row pull-right">
-                    <input type="button" name="button" class="btn btn-primary" value="Button">
-                </div>
+            <div ng-switch="main.active.tab">
+                <div ng-switch-when="b">
+                    <div class="row">
+                        <form class="form-inline home-form">
+                            <div class="form-group">
+                                <select name="" class="form-control input-md">
+                                    <option value="">----SELECT----</option>
+                                    <option value="">optin1</option>
+                                    <option value="">optin2</option>
+                                    <option value="">optin3</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row pull-right">
+                        <input type="button" name="button" class="btn btn-primary" value="Button">
+                    </div>
+                 </div>
             </div>
-            <div class="tab-pane" id="c">
-                <div class="row">
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+            <div ng-switch="main.active.tab">
+                <div ng-switch-when="c">
+                    <div class="row">
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
+
+
                     </div>
 
-
-                </div>
-
-                <div class="row pull-right">
-                    <input type="button" name="button" class="btn btn-primary" value="Button">
-                </div>
+                    <div class="row pull-right">
+                        <input type="button" name="button" class="btn btn-primary" value="Button">
+                    </div>
+                 </div>
             </div>
-            <div class="tab-pane" id="d">
-                <div class="row">
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+            <div ng-switch="main.active.tab">
+                <div ng-switch-when="d">
+                    <div class="row">
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="col-sm-2" >
-                        <div class="col-item">
-                            <div class="photo">
-                                <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                        <div class="col-sm-2" >
+                            <div class="col-item">
+                                <div class="photo">
+                                    <a href="#/productdesc" ng-href="#/productdesc"> <img src="http://placehold.it/800x300" class="img-responsive" alt="a"></a>
+                                </div>
+
                             </div>
-
                         </div>
+
+
                     </div>
 
-
-                </div>
-
-                <div class="row pull-right">
-                    <input type="button" name="button" class="btn btn-primary" value="Button">
-                </div>
+                    <div class="row pull-right">
+                        <input type="button" name="button" class="btn btn-primary" value="Button">
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
 
 
 </div>
+
+
+
+
+
+

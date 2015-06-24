@@ -4,7 +4,7 @@
 
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Search" />
+                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
                     <span class="input-group-btn">
                         <button class="btn btn-info btn-lg" type="button">
                             <i class="glyphicon glyphicon-search"></i>
@@ -41,12 +41,12 @@
             </div><!--/span-->
 
             <div class="col-xs-12 col-sm-8 cart-fixed-container">
-                <div class="row">
+                <div class="row" ng-repeat="product in productdata | filter: search">
                     <div class="col-6 col-sm-6 col-lg-4">
-                        <img src="http://placehold.it/800x300" class="img-responsive">
+                        <img src="{{product.imageUrl}}" class="img-responsive">
                     </div><!--/span-->
                     <div class="col-sm-6 col-lg-4">
-
+                        <h5>{{product.productname}}-{{product.id}}</h5>
                         <p>Bootply is a playground for Bootstrap that enables developers and designers to test, prototype and create mockups using Bootstrap friendly HTML, CSS and Javascript. Bootstrap is a front-end framework that uses CSS and JavaScript to facilitate responsive Web design. </p>
 
                     </div><!--/span-->
@@ -56,35 +56,63 @@
                     </div><!--/span-->
                 </div><!--/row-->
 
-                <div class="row">
-                    <div class="col-6 col-sm-6 col-lg-4">
-                        <img src="http://placehold.it/800x300" class="img-responsive">
-                    </div><!--/span-->
-                    <div class="col-sm-6 col-lg-4">
+                <!--<div class="row">-->
+                    <!--<div class="col-6 col-sm-6 col-lg-4">-->
+                        <!--<img src="http://placehold.it/800x300" class="img-responsive">-->
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                    <!--<div class="col-sm-6 col-lg-4">-->
 
-                        <p>Bootply is a playground for Bootstrap that enables developers and designers to test, prototype and create mockups using Bootstrap friendly HTML, CSS and Javascript. Bootstrap is a front-end framework that uses CSS and JavaScript to facilitate responsive Web design. </p>
+                        <!--<p>Bootply is a playground for Bootstrap that enables developers and designers to test, prototype and create mockups using Bootstrap friendly HTML, CSS and Javascript. Bootstrap is a front-end framework that uses CSS and JavaScript to facilitate responsive Web design. </p>-->
 
-                    </div><!--/span-->
-                    <div class="col-sm-6 col-lg-4">
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                    <!--<div class="col-sm-6 col-lg-4">-->
 
-                        <p><a class="btn btn-default" href="#">View details »</a></p>
-                    </div><!--/span-->
-                </div><!--/row-->
+                        <!--<p><a class="btn btn-default" href="#">View details »</a></p>-->
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                <!--</div>&lt;!&ndash;/row&ndash;&gt;-->
 
-                <div class="row">
-                    <div class="col-6 col-sm-6 col-lg-4">
-                        <img src="http://placehold.it/800x300" class="img-responsive">
-                    </div><!--/span-->
-                    <div class="col-sm-6 col-lg-4">
+                <!--<div class="row">-->
+                    <!--<div class="col-6 col-sm-6 col-lg-4">-->
+                        <!--<img src="http://placehold.it/800x300" class="img-responsive">-->
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                    <!--<div class="col-sm-6 col-lg-4">-->
 
-                        <p>Bootply is a playground for Bootstrap that enables developers and designers to test, prototype and create mockups using Bootstrap friendly HTML, CSS and Javascript. Bootstrap is a front-end framework that uses CSS and JavaScript to facilitate responsive Web design. </p>
+                        <!--<p>Bootply is a playground for Bootstrap that enables developers and designers to test, prototype and create mockups using Bootstrap friendly HTML, CSS and Javascript. Bootstrap is a front-end framework that uses CSS and JavaScript to facilitate responsive Web design. </p>-->
 
-                    </div><!--/span-->
-                    <div class="col-sm-6 col-lg-4">
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                    <!--<div class="col-sm-6 col-lg-4">-->
 
-                        <p><a class="btn btn-default" href="#">View details »</a></p>
-                    </div><!--/span-->
-                </div><!--/row-->
+                        <!--<p><a class="btn btn-default" href="#">View details »</a></p>-->
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                <!--</div>&lt;!&ndash;/row&ndash;&gt;-->
+                <!--<div class="row">-->
+                    <!--<div class="col-6 col-sm-6 col-lg-4">-->
+                        <!--<img src="http://placehold.it/800x300" class="img-responsive">-->
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                    <!--<div class="col-sm-6 col-lg-4">-->
+
+                        <!--<p>Please select the products you want and add them to your shopping cart. Please select the products you want and add them to your shopping cart. </p>-->
+
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                    <!--<div class="col-sm-6 col-lg-4">-->
+
+                        <!--<p><a class="btn btn-default" href="#">View details »</a></p>-->
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                <!--</div>&lt;!&ndash;/row&ndash;&gt;-->
+                <!--<div class="row">-->
+                    <!--<div class="col-6 col-sm-6 col-lg-4">-->
+                        <!--<img src="http://placehold.it/800x300" class="img-responsive">-->
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                    <!--<div class="col-sm-6 col-lg-4">-->
+
+                        <!--<p>When you are done, click the shopping cart icon to review your order and check out. </p>-->
+
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                    <!--<div class="col-sm-6 col-lg-4">-->
+
+                        <!--<p><a class="btn btn-default" href="#">View details »</a></p>-->
+                    <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+                <!--</div>&lt;!&ndash;/row&ndash;&gt;-->
             </div><!--/span-->
 
             <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebarRight" role="navigation">

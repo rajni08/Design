@@ -4,17 +4,23 @@
 
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Search" />
+                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
+
                     <span class="input-group-btn">
                         <button class="btn btn-info btn-lg" type="button">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
                 </div>
+
+
+
             </div>
         </div>
     </div>
 </div>
+
+
 
 <div class="container">
     <div class="row">
@@ -57,7 +63,7 @@
             <div class="item active">
                 <div class="row">
 
-                        <div class="col-sm-2" ng-repeat="product in productdata">
+                        <div class="col-sm-2" ng-repeat="product in productdata | filter: search">
                             <div class="col-item">
                                 <div class="photo">
                                     <a ng-href="#/productdesc"> <img src="{{product.imageUrl}}" class="img-responsive" alt="a" /></a>

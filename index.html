@@ -32,6 +32,7 @@
 
 <body ng-controller="homecontroller">
 
+
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -50,16 +51,13 @@
         <div class="collapse navbar-collapse navbar-control" id="bs-example-navbar-collapse-1">
 
 
-
+            <!--<li ng-repeat="mainmenu in mainmenus">-->
+            <!--<a ng-href="#/{{mainmenu.description['friendlyUrl']}}" title="{{mainmenu.description['title']}}">{{mainmenu.description['name']}}</a>-->
+            <!--</li>-->
             <ul class="nav navbar-nav navbar-right">
 
-                <!--<li ng-repeat="mainmenu in mainmenus">-->
-                    <!--<a ng-href="#/{{mainmenu.description['friendlyUrl']}}" title="{{mainmenu.description['title']}}">{{mainmenu.description['name']}}</a>-->
-                <!--</li>-->
-<li class="dropdown" ng-repeat="menu in menus" ng-class="{dropdown: menu.menus}">
-        <a data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown"
-           ng-class="{'dropdown-toggle': menu.menus}"
-           ng-href="#/{{menu.description['friendlyUrl']}}" >
+<li class="dropdown" ng-repeat="menu in menus">
+        <a ng-href="#/{{menu.description['friendlyUrl']}}" ng-class="{'dropdown-toggle': menu.menus}" class="dropdown-toggle" data-toggle="dropdown">
             {{menu.description['name'] | uppercase}} <span ng-if="menu.childs" class="caret"></span>
         </a>
         <ul ng-if="menu.childs" class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
@@ -196,21 +194,49 @@
 <script src="js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
+<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
-    $(function(){
-        $(".prod-dropdown").hover(
-                function() {
-                    $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
-                    $(this).toggleClass('open');
-                    $('b', this).toggleClass("caret caret-up");
-                },
-                function() {
-                    $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
-                    $(this).toggleClass('open');
-                    $('b', this).toggleClass("caret caret-up");
+    (function ($, window, delay) {
+        // http://jsfiddle.net/AndreasPizsa/NzvKC/
+        var theTimer = 0;
+        var theElement = null;
+        var theLastPosition = {x:0,y:0};
+        $('[data-toggle]')
+                .closest('li')
+                .on('mouseenter', function (inEvent) {
+                    if (theElement) theElement.removeClass('open');
+                    window.clearTimeout(theTimer);
+                    theElement = $(this);
+
+                    theTimer = window.setTimeout(function () {
+                        theElement.addClass('open');
+                    }, delay);
+                })
+                .on('mousemove', function (inEvent) {
+                    if(Math.abs(theLastPosition.x - inEvent.ScreenX) > 4 ||
+                            Math.abs(theLastPosition.y - inEvent.ScreenY) > 4)
+                    {
+                        theLastPosition.x = inEvent.ScreenX;
+                        theLastPosition.y = inEvent.ScreenY;
+                        return;
+                    }
+
+                    if (theElement.hasClass('open')) return;
+                    window.clearTimeout(theTimer);
+                    theTimer = window.setTimeout(function () {
+                        theElement.addClass('open');
+                    }, delay);
+                })
+                .on('mouseleave', function (inEvent) {
+                    window.clearTimeout(theTimer);
+                    theElement = $(this);
+                    theTimer = window.setTimeout(function () {
+                        theElement.removeClass('open');
+                    }, delay);
                 });
-    });
+    })(jQuery, window, 200); // 200 is the delay in milliseconds
+
 </script>
 
 

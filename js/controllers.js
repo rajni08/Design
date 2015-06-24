@@ -28,18 +28,20 @@ homeng.config(['$routeProvider',
             }).
             when('/search', {
                 templateUrl: 'includes/searchpage.html',
-                controller: 'search'
+                controller: 'productcontroller'
             }).
             when('/tabpage', {
                 templateUrl: 'includes/tabpage.html',
                 controller: 'tabpagecntr'
             }).
-            when('/:productdesc', {
-                templateUrl: 'includes/productdesc.html',
+
+            when('/checkout', {
+                templateUrl: 'includes/checkout.html',
                 controller: ''
             }).
-            when('/checkout', {
-                templateUrl: 'includes/home.html',
+
+            when('/:productdesc', {
+                templateUrl: 'includes/productdesc.html',
                 controller: ''
             }).
             otherwise({
@@ -156,6 +158,11 @@ homeng.controller('checkoutcntr', function($scope,$http){
 homeng.controller('tabpagecntr', function($scope,$http){
 
 });
+
+
+
+
+
 
 
 
