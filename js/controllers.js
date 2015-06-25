@@ -139,11 +139,29 @@ function slideShowController($scope, $timeout) {
 //Product Controller
 
     homeng.controller('productcontroller', function($scope,$http){
+        $scope.filters = { };
+        $scope.price = 0;
+        $scope.selected = 0;
         $http.get('client/product.json').success(function(data){
             $scope.productdata=data;
 
 
         });
+
+
+
+        $scope.addToCart = function(price,productname) {
+
+            items.data.push({
+                producttitle: productname.productname,
+                productprice: price.price
+            });
+
+
+            $scope.productname=productname;
+            $scope.price += Math.abs(price);
+            $scope.selected++;
+        }
     });
 
 //Login Controller

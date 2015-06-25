@@ -3,77 +3,87 @@
         "id": 101,
         "productname": "kided",
         "price": 782, 
-        "imageUrl": "img/phones/motorola-xoom-with-wi-fi.0.jpg"
-       
+        "imageUrl": "img/phones/motorola-xoom-with-wi-fi.0.jpg",
+        "category": "mob"
     
     },
     {
         "id": 102,
         "productname": "Duokid",
         "price": 4564, 
-        "imageUrl": "img/phones/dell-streak-7.1.jpg"
+        "imageUrl": "img/phones/dell-streak-7.1.jpg",
+        "category": "tab"
       
     },
     {
         "id": 103,
         "productname": "kidifull",
         "price": 4564, 
-        "imageUrl": "img/phones/dell-streak-7.3.jpg"
+        "imageUrl": "img/phones/dell-streak-7.3.jpg",
+        "category": "other"
       
     },
     {
         "id": 104,
         "productname": "kidinator",
         "price": 4456, 
-        "imageUrl": "img/phones/dell-venue.0.jpg"
+        "imageUrl": "img/phones/dell-venue.0.jpg",
+        "category": "mob"
       
     },
     {
         "id": 101,
         "productname": "kidsome",
         "price": 456, 
-        "imageUrl": "img/phones/dell-venue.2.jpg"
+        "imageUrl": "img/phones/dell-venue.2.jpg",
+        "category": "tab"
        
     },
     {
         "id": 105,
         "productname": "onkido",
         "price": 456456, 
-        "imageUrl": "img/phones/dell-venue.3.jpg"
+        "imageUrl": "img/phones/dell-venue.3.jpg",
+        "category": "other"
     },
     {
         "id": 106,
         "productname": "kidicus",
         "price": 4554, 
-        "imageUrl": "img/phones/droid-2-global-by-motorola.2.jpg"
+        "imageUrl": "img/phones/droid-2-global-by-motorola.2.jpg",
+        "category": "mob"
         
     },
     {
         "id": 107,
         "productname": "kidbrain",
         "price": 5445, 
-        "imageUrl": "img/phones/droid-pro-by-motorola.0.jpg"
+        "imageUrl": "img/phones/droid-pro-by-motorola.0.jpg",
+        "category": "tab"
         
     },
     {
         "id": 108,
         "productname": "kidsify",
         "price": 5000, 
-        "imageUrl": "img/phones/droid-pro-by-motorola.1.jpg"
+        "imageUrl": "img/phones/droid-pro-by-motorola.1.jpg",
+        "category": "other"
         
     },
     {
         "id": 109,
        "productname": "kidination",
         "price": 400, 
-        "imageUrl": "img/phones/motorola-bravo-with-motoblur.2.jpg"
+        "imageUrl": "img/phones/motorola-bravo-with-motoblur.2.jpg",
+        "category": "mob"
         
     },
     {
         "id": 110,
         "productname": "ukidi",
         "price": 3000, 
-        "imageUrl": "img/phones/motorola-charm-with-motoblur.1.jpg"
+        "imageUrl": "img/phones/motorola-charm-with-motoblur.1.jpg",
+        "category": "tab"
         
     }
 ]
