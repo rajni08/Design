@@ -1,7 +1,7 @@
 'use strict';
 // Angular Module
 
-    var homeng=angular.module('homeng',[]);
+    var homeng=angular.module('homeng',['ngCookies']);
 
 //include Common menu in angular js
 
@@ -40,7 +40,7 @@ homeng.config(['$routeProvider',
                 controller: ''
             }).
 
-            when('/:productdesc', {
+            when('/products/:productdesc', {
                 templateUrl: 'includes/productdesc.html',
                 controller: ''
             }).
@@ -58,6 +58,8 @@ homeng.config(['$routeProvider',
         $http.get('client/menu.json').success(function(data){
 
             $scope.menus =data;
+
+
 
            });
 
@@ -138,44 +140,60 @@ function slideShowController($scope, $timeout) {
 
 //Product Controller
 
-    homeng.controller('productcontroller', function($scope,$http){
-        $scope.filters = { };
-        $scope.price = 0;
-        $scope.selected = 0;
+
+    homeng.controller('productcontroller',['$scope','$http','$cookies','$cookieStore', function($scope,$http,$cookieStore){
+
         $http.get('client/product.json').success(function(data){
             $scope.productdata=data;
-
 
         });
 
 
+        $scope.click = function (name,quantity) {
+            var productcarts=[];
+            //var productcarts = $cookieStore.get(name);
 
-        $scope.addToCart = function(price,productname) {
 
-            items.data.push({
-                producttitle: productname.productname,
-                productprice: price.price
+
+            productcarts.push({
+                id          :   name.id,
+                quantity    :   quantity,
+                price       :   name.price,
+                name        :   name.productname,
+                thumb       :   name.imageUrl,
+                category    :   name.category
             });
 
 
-            $scope.productname=productname;
-            $scope.price += Math.abs(price);
-            $scope.selected++;
+
+            alert(name.productname +" "+ quantity);
+
+            //$cookieStore.put(this.name, productcarts);
+
+            //$scope.productcarts.push(name);
+
+
+             //alert("You selected : " + name.productname + "price" + name.price);
         }
-    });
+
+
+    }]);
+
+
+
 
 //Login Controller
     homeng.controller('logincontroller', function($scope,$http){
 
     });
 //Login Controller
-homeng.controller('checkoutcntr', function($scope,$http){
+    homeng.controller('checkoutcntr', function($scope,$http){
 
-});
+    });
 //Login Controller
-homeng.controller('tabpagecntr', function($scope,$http){
+    homeng.controller('tabpagecntr', function($scope,$http){
 
-});
+    });
 
 
 

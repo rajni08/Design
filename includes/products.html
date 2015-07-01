@@ -1,3 +1,17 @@
+<!--<div ng-repeat="productcart in productcarts track by $index">{{productcart}}</div>-->
+<!--<table border="1">-->
+
+<!--<tr ng-repeat="productcart in productcarts">-->
+    <!--<td><input type="text" ng-model="productcart.productname" class="input-small"></td>-->
+    <!--<td><input type="number" ng-model="productcart.price"  class="input-mini">  </td>-->
+    <!--<td><input type="number" ng-model="productcart.imageUrl"  class="input-mini">  </td>-->
+    <!--<td><input type="number" ng-model="productcart.quantity"  class="input-mini">  </td>-->
+    <!--&lt;!&ndash;<td>{{item.qty * item.cost | currency}}</td>&ndash;&gt;-->
+    <!--<td>-->
+        <!--[<a href ng-click="removeItem($index)">X</a>]-->
+    <!--</td>-->
+<!--</tr>-->
+<!--</table>-->
 <div class="container">
     <div class="row">
         <div class="col-md-12 search-bar">
@@ -7,7 +21,7 @@
                     <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
 
                     <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
+                        <button class="btn btn-info btn-lg" type="button" >
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
@@ -29,9 +43,14 @@
             <p class="lead">Shop Name</p>
             <div class="list-group">
 
-                <a class="list-group-item active" href="#">Category 1</a>
-                <a class="list-group-item" href="#">Category 2</a>
-                <a class="list-group-item" href="#">Category 3</a>
+
+                <a class="list-group-item"  ng-click="myFilter = {category: 1}">Mobile</a>
+                <a class="list-group-item"  ng-click="myFilter = {category: 2}">Tab</a>
+                <a class="list-group-item" ng-click="myFilter = {category: 3}">Others</a>
+                <a class="list-group-item" ng-click="myFilter = null">All</a>
+
+
+
             </div>
         </div>
 
@@ -51,6 +70,7 @@
     <div class="row">
         <div class="row">
             <div class="col-md-12">
+
                 <h3>
                     Some Text</h3>
                 <hr>
@@ -62,30 +82,35 @@
         <div class="carousel-inner">
             <div class="item active">
                 <div class="row">
-
-                        <div class="col-sm-2" ng-repeat="product in productdata | filter: search">
+                      <div class="col-sm-2" ng-repeat="product in productdata | filter:search | filter:myFilter">
                             <div class="col-item">
                                 <div class="photo">
-                                    <a ng-href="#/productdesc"> <img src="{{product.imageUrl}}" class="img-responsive" alt="a" /></a>
+                                    <a ng-href="#/products/productdesc"> <img src="{{product.imageUrl}}"
+                                                                      class="img-responsive" alt="a" /></a>
                                 </div>
                                 <div class="info">
                                     <div class="row">
                                         <div class="price col-md-12">
                                             <h5>
                                               {{product.productname}}-{{product.id}}</h5>
-                                            <h5 class="price-text-color">
-                                                ${{product.price}}</h5>
+                                            <!--<input type="hidden" ng-model="item.price" value="{{product.price}}">-->
+                                            <h5 class="price-text-color">${{product.price}}
+                                                <!--<input type="hidden" ng-model="item.productname" value="{{product.productname}}">-->
+                                                <!--${{product.price}}--></h5>
                                         </div>
 
                                     </div>
                                     <div class="separator clear-left">
 
                                         <p class="btn-add">
-                                            <input type="number" value="1" class="form-control text-center"
-                                                   min="1"></p>
+                                            <input type="number" value="1" ng-model="quantity" class="form-control text-center" min="1"></p>
                                         <p class="btn-details">
-                                            <a href="#" class="hidden-sm btn btn-group-sm btn-primary"> <i
-                                                    class="fa fa-shopping-cart"></i>Add
+
+                                            <!--ng-click="addToCart(product.id,product.price,product.productname,1)"-->
+
+                                    <a href="" class="hidden-sm btn btn-group-sm btn-primary"
+                                       ng-click="click(product,quantity)" ng-disabled="quantity == null">
+                                        <i class="fa fa-shopping-cart"></i>Add
                                             </a></p>
                                     </div>
                                     <div class="clearfix">

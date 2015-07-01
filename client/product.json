@@ -4,7 +4,7 @@
         "productname": "kided",
         "price": 782, 
         "imageUrl": "img/phones/motorola-xoom-with-wi-fi.0.jpg",
-        "category": "mob"
+        "category": 1
     
     },
     {
@@ -12,7 +12,7 @@
         "productname": "Duokid",
         "price": 4564, 
         "imageUrl": "img/phones/dell-streak-7.1.jpg",
-        "category": "tab"
+        "category": 2
       
     },
     {
@@ -20,7 +20,7 @@
         "productname": "kidifull",
         "price": 4564, 
         "imageUrl": "img/phones/dell-streak-7.3.jpg",
-        "category": "other"
+        "category": 3
       
     },
     {
@@ -28,7 +28,7 @@
         "productname": "kidinator",
         "price": 4456, 
         "imageUrl": "img/phones/dell-venue.0.jpg",
-        "category": "mob"
+        "category": 1
       
     },
     {
@@ -36,7 +36,7 @@
         "productname": "kidsome",
         "price": 456, 
         "imageUrl": "img/phones/dell-venue.2.jpg",
-        "category": "tab"
+        "category": 2
        
     },
     {
@@ -51,7 +51,7 @@
         "productname": "kidicus",
         "price": 4554, 
         "imageUrl": "img/phones/droid-2-global-by-motorola.2.jpg",
-        "category": "mob"
+        "category": 2
         
     },
     {
@@ -59,7 +59,7 @@
         "productname": "kidbrain",
         "price": 5445, 
         "imageUrl": "img/phones/droid-pro-by-motorola.0.jpg",
-        "category": "tab"
+        "category": 3
         
     },
     {
@@ -67,7 +67,7 @@
         "productname": "kidsify",
         "price": 5000, 
         "imageUrl": "img/phones/droid-pro-by-motorola.1.jpg",
-        "category": "other"
+        "category": 1
         
     },
     {
@@ -75,7 +75,7 @@
        "productname": "kidination",
         "price": 400, 
         "imageUrl": "img/phones/motorola-bravo-with-motoblur.2.jpg",
-        "category": "mob"
+        "category": 2
         
     },
     {
@@ -83,7 +83,7 @@
         "productname": "ukidi",
         "price": 3000, 
         "imageUrl": "img/phones/motorola-charm-with-motoblur.1.jpg",
-        "category": "tab"
+        "category": 3
         
     }
 ]
