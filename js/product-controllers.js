@@ -42,7 +42,7 @@ homeng.controller('productcontroller',['$scope','$http','$cookieStore','$localSt
         //alert("You selected : " + name.productname + "price" + name.price);
         var favoriteCookie = $cookieStore.get('myFavorite');
 
-
+        console.log( favoriteCookie );
         return favoriteCookie;
     }
 

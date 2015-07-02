@@ -1,7 +1,7 @@
 'use strict';
 // Angular Module
 
-    var homeng=angular.module('homeng',['ngCookies']);
+    var homeng=angular.module('homeng',['ngCookies','ngStorage']);
 
 //include Common menu in angular js
 
@@ -58,7 +58,6 @@ homeng.config(['$routeProvider',
         $http.get('client/menu.json').success(function(data){
 
             $scope.menus =data;
-
 
 
            });
@@ -141,7 +140,7 @@ function slideShowController($scope, $timeout) {
 //Product Controller
 
 
-    homeng.controller('productcontroller',['$scope','$http','$cookies','$cookieStore', function($scope,$http,$cookieStore){
+    homeng.controller('productcontroller',['$scope','$http','$cookies','$cookieStore','$localStorage', function($scope,$http,$cookieStore,$localStorage){
 
         $http.get('client/product.json').success(function(data){
             $scope.productdata=data;
@@ -153,20 +152,22 @@ function slideShowController($scope, $timeout) {
             var productcarts=[];
             //var productcarts = $cookieStore.get(name);
 
+                $localStorage.message = productcarts.push({
+                    id          :   name.id,
+                    quantity    :   quantity,
+                    price       :   name.price,
+                    name        :   name.productname,
+                    thumb       :   name.imageUrl,
+                    category    :   name.category
+                });
 
 
-            productcarts.push({
-                id          :   name.id,
-                quantity    :   quantity,
-                price       :   name.price,
-                name        :   name.productname,
-                thumb       :   name.imageUrl,
-                category    :   name.category
-            });
 
 
 
-            alert(name.productname +" "+ quantity);
+                $scope.justons= $localStorage.message;
+
+            console.log(justons);
 
             //$cookieStore.put(this.name, productcarts);
 
