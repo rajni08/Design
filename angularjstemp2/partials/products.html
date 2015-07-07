@@ -1,0 +1,138 @@
+<!--<table border="1">-->
+
+<!--<tr ng-repeat="productcart in productcarts">-->
+    <!--<td><input type="text" ng-model="productcart.productname" class="input-small"></td>-->
+    <!--<td><input type="number" ng-model="productcart.price"  class="input-mini">  </td>-->
+    <!--<td><input type="number" ng-model="productcart.imageUrl"  class="input-mini">  </td>-->
+    <!--<td><input type="number" ng-model="productcart.quantity"  class="input-mini">  </td>-->
+    <!--&lt;!&ndash;<td>{{item.qty * item.cost | currency}}</td>&ndash;&gt;-->
+    <!--<td>-->
+        <!--[<a href ng-click="removeItem($index)">X</a>]-->
+    <!--</td>-->
+<!--</tr>-->
+<!--</table>-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 search-bar">
+
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button" >
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+            <p class="lead">{{categories.description.name}}</p>
+            <div class="list-group">
+
+
+                <!--<a class="list-group-item"  ng-click="myFilter = {category: 1}">Mobile</a>-->
+                <!--<a class="list-group-item"  ng-click="myFilter = {category: 2}">Tab</a>-->
+                <!--<a class="list-group-item" ng-click="myFilter = {category: 3}">Others</a>-->
+                <!--<a class="list-group-item" ng-click="myFilter = null">All</a>-->
+                <a class="list-group-item" ng-repeat="category in categories.childs">
+
+                    {{ category.description.name }}
+
+                </a>
+
+
+
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+            <div class="thumbnail">
+                <img alt="" src="http://placehold.it/800x300" class="img-responsive">
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <hr>
+            </div>
+
+        </div>
+
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="row">
+                    <div ng-repeat="product in [itemdatas] track by $index">
+                      <div class="col-sm-2" ng-repeat="prod in product.products">
+                            <div class="col-item">
+                                <div class="photo productimages">
+                                    <a ng-href="#/products/productdesc/{{prod.id}}">
+                                        <img src="{{prod.image.imageUrl}}" class="img-responsive"
+                                             alt="{{prod.description.title}}" /></a>
+
+                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-md-12">
+                                            <h5>
+                                              {{prod.description.name}}</h5>
+                                           <h5> {{prod.id}}</h5>
+                                            <!--<input type="hidden" ng-model="item.price" value="{{product.price}}">-->
+                                            <h5 class="price-text-color">{{prod.price}}
+                                                <!--<input type="hidden" ng-model="item.productname" value="{{product.productname}}">-->
+                                                <!--${{product.price}}--></h5>
+                                        </div>
+
+                                    </div>
+                                    <div class="separator clear-left">
+
+                                        <p class="btn-add">
+                                            <input type="number" value="1" ng-model="quantity" class="form-control text-center" min="1"></p>
+                                        <p class="btn-details">
+
+                                            <!--ng-click="addToCart(product.id,product.price,product.productname,1)"-->
+
+                                    <a href="" class="hidden-sm btn btn-group-sm btn-primary"
+                                       ng-click="click(product,quantity)" ng-disabled="quantity == null">
+                                        <i class="fa fa-shopping-cart"></i>Add
+                                            </a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

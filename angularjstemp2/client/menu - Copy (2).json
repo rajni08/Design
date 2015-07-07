@@ -1,0 +1,31 @@
+[
+  {
+    "name": "General",
+    "subitems": [
+      {
+        "name": "Register",
+        "actions": [
+          "User"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "App",
+    "subitems": [
+      {
+        "name": "MultiExport",
+        "actions": [
+          "Parameter",
+          "CreateFile"
+        ]
+      },
+      {
+        "name": "MultiCube",
+        "actions": [
+          "Create"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,146 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="thumbnail">
+                <div ng-controller="slideShowController" class="imageslide " ng-switch='slideshow' ng-animate="'animate'">
+                    <div class="slider-content" ng-switch-when="1">
+                        <img src="http://farm9.staticflickr.com/8042/7918423710_e6dd168d7c_b.jpg">
+                    </div>
+                    <div class="slider-content" ng-switch-when="2">
+                        <img src="http://farm9.staticflickr.com/8449/7918424278_4835c85e7a_b.jpg">
+                    </div>
+                    <div class="slider-content" ng-switch-when="3">
+                        <img src="http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg">
+                    </div>
+                    <div class="slider-content" ng-switch-when="4">
+                        <img src="http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg">
+
+                    </div>
+                </div>
+                <!----   <div class="caption-full">
+                   <h4 class="pull-right">$24.99</h4>
+                   <h4><a href="#">Product Name</a>
+                   </h4>
+                   <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                   <p>Want to make these reviews work? Check out
+                       <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
+                       </strong>over at maxoffsky.com!</p>
+                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+               </div>
+               <div class="ratings">
+                   <p class="pull-right">3 reviews</p>
+                   <p>
+                       <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star-empty"></span>
+                       4.0 stars
+                   </p>
+               </div> --------->
+            </div>
+
+            <div class="well">
+
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <form class="form-inline home-form">
+
+                            <div class="form-group home-combos" >
+
+                                <select ng-model="statecode" id="state" class="form-control input-md" ng-change="getstatecode()">
+                                    <option value=''>------Please Select------</option>
+
+                                    <option ng-repeat="state in states track by state.code" value="{{state.code}}">
+                                        {{state.name}}
+                                    </option>
+
+                                </select>
+
+
+
+                                <!--<select id="country" ng-model="cities" class="form-control input-md"-->
+                                        <!--ng-options="country for (country, cities) in countries">-->
+                                    <!--<option value=''>------Select------</option>-->
+                                <!--</select>-->
+                                <!--<select name="" class="form-control input-md">-->
+                                    <!--<option ng-repeat="combo1 in combo1s" value="{{combo1.option['id']}}">{{combo1.option['name']}}</option>-->
+
+                                <!--</select>-->
+
+                            </div>
+
+                            <div class="form-group home-combos" >
+
+                                <select ng-model="citycode" ng-disabled="!statecode"  id="mycity"
+                                        class="form-control input-md" ng-change="getareacode()">
+                                    <option value=''>------Please Select------</option>
+
+                                    <option ng-repeat="city in cities track by city.id" value="{{city.name}}">
+                                        {{city.name}}
+                                    </option>
+
+                                </select>
+                                 <!--<select id="city" ng-disabled="!cities" class="form-control input-md" ng-model="suburbs"-->
+                                         <!--ng-options="city for (city, suburbs) in cities">-->
+                                    <!--<option value=''>------Select------</option>-->
+                                 <!--</select>-->
+
+                                <!--<select name="" class="form-control input-md">-->
+                                    <!--<option ng-repeat="combo2 in combo2s" value="{{combo2.option['id']}}">{{combo2.option['name']}}</option>-->
+                                <!--</select>-->
+
+                            </div>
+
+
+                            <div class="form-group home-combos" >
+                                <select ng-model="areacode" ng-disabled="!citycode"  id="myarea"
+                                        class="form-control input-md">
+                                    <option value=''>------Please Select------</option>
+
+                                    <option ng-repeat="area in areas track by area.id" value="{{area.name}}">
+                                        {{area.name}}
+                                    </option>
+
+                                </select>
+
+                                <!--<select id="suburb" ng-disabled="!suburbs" class="form-control input-md"-->
+                                        <!--ng-model="suburb" ng-options="suburb for suburb in suburbs">-->
+                                    <!--<option value=''>------Select------</option>-->
+                                <!--</select>-->
+
+                                <!--<select name="" class="form-control input-md">-->
+                                    <!--<option ng-repeat="combo3 in combo3s" value="{{combo3.option['id']}}">{{combo3.option['name']}}</option>-->
+                                <!--</select>-->
+
+
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                        </form>
+
+
+                        <div class="caption-full">
+
+                            <h4><a href="#">About</a></h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p>Want to make these reviews work? Check out</p>
+                            <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

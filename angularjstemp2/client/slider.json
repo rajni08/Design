@@ -1,0 +1,17 @@
+ [
+{ 
+"head":"Angular js",    
+"title":"Lorem ipsum dolor sit amet, consectetur adipiscing elit.in nisi condimentum egestas.", 
+"image":"http://placehold.it/1200x400"
+}, 
+{ 
+"head":"Jquery",    
+"title":"Suspendisse dignissim aliquet rutrum.", 
+"image":"http://placehold.it/1200x400/AAAAAA/888888"
+}, 
+{ 
+"head":"Javascript",    
+"title":"in nisi condimentum egestas. Aliquam Suspendisse dignissim aliquet rutrum.", 
+"image":"http://placehold.it/1200x400/888888/555555"
+}
+]
