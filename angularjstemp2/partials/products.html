@@ -86,8 +86,8 @@
         <div class="carousel-inner">
             <div class="item active">
                 <div class="row">
-                    <div ng-repeat="product in [itemdatas] track by $index">
-                      <div class="col-sm-2" ng-repeat="prod in product.products">
+                    <div ng-repeat="product in [itemdatas] track by $index" >
+                      <div class="col-sm-2" ng-repeat="prod in product.products | filter:search ">
                             <div class="col-item">
                                 <div class="photo productimages">
                                     <a ng-href="#/products/productdesc/{{prod.id}}">
