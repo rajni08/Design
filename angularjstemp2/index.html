@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -137,50 +137,9 @@
 <script src="js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script>
-    (function ($, window, delay) {
-        // http://jsfiddle.net/AndreasPizsa/NzvKC/
-        var theTimer = 0;
-        var theElement = null;
-        var theLastPosition = {x:0,y:0};
-        $('[data-toggle]')
-                .closest('li')
-                .on('mouseenter', function (inEvent) {
-                    if (theElement) theElement.removeClass('open');
-                    window.clearTimeout(theTimer);
-                    theElement = $(this);
 
-                    theTimer = window.setTimeout(function () {
-                        theElement.addClass('open');
-                    }, delay);
-                })
-                .on('mousemove', function (inEvent) {
-                    if(Math.abs(theLastPosition.x - inEvent.ScreenX) > 4 ||
-                            Math.abs(theLastPosition.y - inEvent.ScreenY) > 4)
-                    {
-                        theLastPosition.x = inEvent.ScreenX;
-                        theLastPosition.y = inEvent.ScreenY;
-                        return;
-                    }
-
-                    if (theElement.hasClass('open')) return;
-                    window.clearTimeout(theTimer);
-                    theTimer = window.setTimeout(function () {
-                        theElement.addClass('open');
-                    }, delay);
-                })
-                .on('mouseleave', function (inEvent) {
-                    window.clearTimeout(theTimer);
-                    theElement = $(this);
-                    theTimer = window.setTimeout(function () {
-                        theElement.removeClass('open');
-                    }, delay);
-                });
-    })(jQuery, window, 200); // 200 is the delay in milliseconds
-
-</script>
 
 
 </body>

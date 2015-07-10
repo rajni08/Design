@@ -11,14 +11,18 @@ body {
 .thumbnail img {
     width: 100%;
 }
-
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
 
 .photo.productimages img {
     min-height: 144px;
 }
 
 .photo.productimages img {
-    max-width: 127px;
+    /*max-width: 127px;*/
+    max-width:72px;
+
 }
 
 
@@ -207,6 +211,7 @@ footer {
 {
     margin: 0 auto;
     width: 100%;
+    min-height:156px;
 }
 
 .col-item .info
@@ -230,6 +235,7 @@ footer {
 {
     line-height: 20px;
     margin: 0;
+    font-size: 11px;
 }
 
 .price-text-color
@@ -557,9 +563,17 @@ h3.dark-grey {
 
 .service-image-left > center > img,.service-image-right > center > img{
     max-height: 155px;
+
 }
-
-
+.service-image-left center{
+    display: table-cell;
+    height: 321px;
+    vertical-align: middle;
+}
+.service-image-left center img {
+    max-width: 100%;
+    width: 100%;
+}
 .dropdown-submenu {
     position: relative;
 }
@@ -567,6 +581,7 @@ h3.dark-grey {
 .dropdown-submenu>.dropdown-menu {
     top: 0;
     left: 100%;
+    /*right:100%;*/
     margin-top: -6px;
     margin-left: -1px;
     -webkit-border-radius: 0 6px 6px 6px;
@@ -574,9 +589,26 @@ h3.dark-grey {
     border-radius: 0 6px 6px 6px;
 }
 
-.dropdown-submenu:hover>.dropdown-menu {
+
+
+
+.navbar-nav li:last-child .dropdown-submenu .dropdown-menu{
+    right: 100%;
+    left: auto;
+}
+.navbar-nav li:last-child{
+
+}
+.dropdown-submenu:hover >.dropdown-menu {
     display: block;
 }
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+li.dropdown:hover > .dropdown-submenu:hover .dropdown-menu{
+    display: block;
+}
+
 
 .dropdown-submenu>a:after {
     display: block;
