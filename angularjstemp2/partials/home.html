@@ -1,6 +1,104 @@
+<!--<table border="1">-->
+
+<!--<tr ng-repeat="productcart in productcarts">-->
+<!--<td><input type="text" ng-model="productcart.productname" class="input-small"></td>-->
+<!--<td><input type="number" ng-model="productcart.price"  class="input-mini">  </td>-->
+<!--<td><input type="number" ng-model="productcart.imageUrl"  class="input-mini">  </td>-->
+<!--<td><input type="number" ng-model="productcart.quantity"  class="input-mini">  </td>-->
+<!--&lt;!&ndash;<td>{{item.qty * item.cost | currency}}</td>&ndash;&gt;-->
+<!--<td>-->
+<!--[<a href ng-click="removeItem($index)">X</a>]-->
+<!--</td>-->
+<!--</tr>-->
+<!--</table>-->
+<div class="container">
+
+        <div class="row" style=" margin-bottom: 10px; ">
+            <div class="col-md-4" style="height: 100px; width: 100px; background-color: #ccc;">
+
+
+                logo
+            </div>
+            <div class="col-md-8"  style="height: 100px; width:88%; left:2%; background-color: #ccc;">
+
+               <p class="pull-right"> another logo</p>
+
+            </div>
+
+        </div>
+
+</div>
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10 search-bar">
+
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-small" type="button" >
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <i class="glyphicon glyphicon-shopping-cart homecart-icon"></i>
+            <span class="badge homecart-badge pull-right">1</span>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3" ng-controller="productcontroller">
+
+            <p class="lead">{{categories.description.name}}</p>
+            <ul class="dropdown-menu" id="parentMenu" role="menu" aria-labelledby="dropdownMenu" ng-cloak>
+
+                <!-- Child Menu -->
+                <li class="dropdown-submenu" ng-repeat="menu in menus"><a href="#/products/{{menu.code}}/">{{menu.description['name'] |
+                    uppercase}}</a>
+                    <ul class="dropdown-menu" ng-if="menu.childs">
+
+                        <li class="dropdown-submenu" ng-repeat="submenu in menu.childs"><a href="#/products/{{submenu.id}}/">{{submenu.description['name']}}</a>
+                            <ul class="dropdown-menu" ng-if="submenu.childs">
+                                <li ng-repeat="subofsub in submenu.childs"><a
+                                        href="#/products/productdesc/{{subofsub.id}}/">{{subofsub.description['name']}}</a></li>
+
+                            </ul></li>
+
+                    </ul>
+                </li>
+            </ul>
+            <!--<div class="list-group">-->
+            <!---->
+
+            <!--&lt;!&ndash;<a class="list-group-item"  ng-click="myFilter = {category: 1}">Mobile</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="list-group-item"  ng-click="myFilter = {category: 2}">Tab</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="list-group-item" ng-click="myFilter = {category: 3}">Others</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="list-group-item" ng-click="myFilter = null">All</a>&ndash;&gt;-->
+            <!--<a class="list-group-item" ng-repeat="category in categories.childs">-->
+
+            <!--{{ category.description.name }}-->
+
+            <!--</a>-->
+
+
+
+            <!--</div>-->
+        </div>
+
+        <div class="col-md-9">
+
             <div class="thumbnail">
                 <div ng-controller="slideShowController" class="imageslide " ng-switch='slideshow' ng-animate="'animate'">
                     <div class="slider-content" ng-switch-when="1">
@@ -40,107 +138,94 @@
                </div> --------->
             </div>
 
-            <div class="well">
-
-                <div class="row">
-                    <div class="col-md-12">
 
 
-                        <form class="form-inline home-form">
+        </div>
 
-                            <div class="form-group home-combos" >
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-12">
 
-                                <select ng-model="statecode" id="state" class="form-control input-md" ng-change="getstatecode()">
-                                    <option value=''>------Please Select------</option>
+                <h3> Featured Products </h3>
+                <hr>
+            </div>
 
-                                    <option ng-repeat="state in states track by state.code" value="{{state.code}}">
-                                        {{state.name}}
-                                    </option>
-
-                                </select>
+        </div>
 
 
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" >
+            <div class="item active">
+                <div class="row" ng-controller="productcontroller">
+                    <div ng-repeat="product in [itemdatas] track by $index" >
+                        <div class="col-sm-2" ng-repeat="prod in product.products | filter:search ">
 
-                                <!--<select id="country" ng-model="cities" class="form-control input-md"-->
-                                        <!--ng-options="country for (country, cities) in countries">-->
-                                    <!--<option value=''>------Select------</option>-->
-                                <!--</select>-->
-                                <!--<select name="" class="form-control input-md">-->
-                                    <!--<option ng-repeat="combo1 in combo1s" value="{{combo1.option['id']}}">{{combo1.option['name']}}</option>-->
+                            <div class="col-item">
+                                <div class="photo productimages">
+                                    <div ng-if="prod.quantity != '0'">
+                                        <div class="ribbon-wrapper-green"><div class="ribbon-green">Sale</div></div>
+                                    </div>
+                                    <div ng-if="prod.quantity == '0'">
+                                        <div class="ribbon-wrapper-green"><div class="ribbon-gray">Out of stock</div></div>
+                                    </div>
+                                    <a ng-href="#/products/productdesc/{{prod.id}}/">
 
-                                <!--</select>-->
+                                        <img src="{{prod.image.imageUrl}}" class="img-responsive"
+                                             alt="{{prod.description.title}}" /></a>
 
+                                </div>
+
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-md-12">
+                                            <!--<a href="" tooltip-title="prod.description.name">{{prod.description.name | uppercase | cut:true:20:' ...'}}</a>-->
+                                            <!--<a href="#" tooltips="" tooltip-title="{{prod.description.name}}" tooltip-side="right">Right-->
+                                            <!--</a>-->
+                                            <a ng-href="#/products/productdesc/{{prod.id}}/"
+                                               title="{{prod.description.name}}" ng-class="tooltip">{{prod.description.name |
+                                                uppercase | cut:true:20:' ...'}}</a>
+
+                                            <!--<input type="hidden" ng-model="item.price" value="{{product.price}}">-->
+                                            <h5 class="price-text-color">{{prod.price}}
+                                                <!--<input type="hidden" ng-model="item.productname" value="{{product.productname}}">-->
+                                                <!--${{product.price}}--></h5>
+                                        </div>
+
+                                    </div>
+                                    <div class="separator clear-left">
+
+                                        <p class="btn-add" data-ng-init="quantity=prod.quantityOrderMinimum;">
+                                            <input type="number"  ng-model="quantity"
+                                                   ng-disabled="prod.quantity == '0'"
+                                                   class="form-control text-center"
+                                                   value={{prod.quantityOrderMinimum}}
+                                                   min={{prod.quantityOrderMinimum}}
+                                                   max={{prod.quantityOrderMaximum}}></p>
+                                        <p class="btn-details">
+
+                                            <!--ng-click="addToCart(product.id,product.price,product.productname,1)"-->
+
+                                            <a href="" class="hidden-sm btn btn-group-sm btn-primary"
+                                               ng-click="click(product,quantity)"
+                                               ng-disabled="quantity == null || prod.quantity == '0'">
+                                                <i class="fa fa-shopping-cart"></i>Add
+                                            </a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="form-group home-combos" >
-
-                                <select ng-model="citycode" ng-disabled="!statecode"  id="mycity"
-                                        class="form-control input-md" ng-change="getareacode()">
-                                    <option value=''>------Please Select------</option>
-
-                                    <option ng-repeat="city in cities track by city.id" value="{{city.name}}">
-                                        {{city.name}}
-                                    </option>
-
-                                </select>
-                                 <!--<select id="city" ng-disabled="!cities" class="form-control input-md" ng-model="suburbs"-->
-                                         <!--ng-options="city for (city, suburbs) in cities">-->
-                                    <!--<option value=''>------Select------</option>-->
-                                 <!--</select>-->
-
-                                <!--<select name="" class="form-control input-md">-->
-                                    <!--<option ng-repeat="combo2 in combo2s" value="{{combo2.option['id']}}">{{combo2.option['name']}}</option>-->
-                                <!--</select>-->
-
-                            </div>
-
-
-                            <div class="form-group home-combos" >
-                                <select ng-model="areacode" ng-disabled="!citycode"  id="myarea"
-                                        class="form-control input-md">
-                                    <option value=''>------Please Select------</option>
-
-                                    <option ng-repeat="area in areas track by area.id" value="{{area.name}}">
-                                        {{area.name}}
-                                    </option>
-
-                                </select>
-
-                                <!--<select id="suburb" ng-disabled="!suburbs" class="form-control input-md"-->
-                                        <!--ng-model="suburb" ng-options="suburb for suburb in suburbs">-->
-                                    <!--<option value=''>------Select------</option>-->
-                                <!--</select>-->
-
-                                <!--<select name="" class="form-control input-md">-->
-                                    <!--<option ng-repeat="combo3 in combo3s" value="{{combo3.option['id']}}">{{combo3.option['name']}}</option>-->
-                                <!--</select>-->
-
-
-                            </div>
-
-
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
-
-                        </form>
-
-
-                        <div class="caption-full">
-
-                            <h4><a href="#">Home</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            <p>Want to make these reviews work? Check out</p>
-                            <p> Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
 
         </div>
 
     </div>
+
 
 </div>

@@ -2,7 +2,7 @@
 
 // Angular Module
 
-var homeng = angular.module('homeng', ['ngCookies', 'ngStorage']);
+var homeng = angular.module('homeng', ['ngCookies', 'ngStorage','720kb.tooltips']);
 
 
 //include Common menu in angular js
@@ -32,7 +32,7 @@ homeng.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/', {
-                templateUrl: 'partials/tabpage.html',
+                templateUrl: 'partials/home.html',
                 controller: 'tabpagecntr'
             }).
             when('/products/:code', {
@@ -164,7 +164,17 @@ homeng.controller('productdesccontroller', function ($scope, $http, $routeParams
 
 });
 
+function slideShowController($scope, $timeout) {
+    var slidesInSlideshow = 4;
+    var slidesTimeIntervalInMs = 5000;
 
+    $scope.slideshow = 1;
+    var slideTimer =
+        $timeout(function interval() {
+            $scope.slideshow = ($scope.slideshow % slidesInSlideshow) + 1;
+            slideTimer = $timeout(interval, slidesTimeIntervalInMs);
+        }, slidesTimeIntervalInMs);
+}
 
 //Login Controller
 homeng.controller('logincontroller', function ($scope, $http) {
