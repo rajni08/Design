@@ -1,0 +1,16 @@
+<div ng-controller="menumodify">
+    <select ng-model="selection" ng-options="item for item in items">
+    </select>
+
+
+    <!-- Navigation -->
+    <div class="animate-switch-container" ng-switch on="selection">
+        <div class="animate-switch" ng-switch-when="horizontal">
+
+        </div>
+
+        <div class="animate-switch" ng-switch-default="left">
+
+        </div>
+    </div>
+</div>

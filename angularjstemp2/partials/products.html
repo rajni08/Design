@@ -13,6 +13,17 @@
 <!--</table>-->
 <div class="container">
     <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"></a>
+            </div>
+            <div class="col-md-9 well">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
         <div class="col-md-12 search-bar">
 
             <div id="custom-search-input">
@@ -36,23 +47,23 @@
 
 
 <div class="container">
-    <div class="row">
+    <div class="row" ng-controller="menucontroller" ng-cloak>
+
 
         <div class="col-md-3">
 
-            <p class="lead">{{categories.description.name}}</p>
+
+            <h3  style="position: relative;">{{categories.description.name}}</h3>
             <ul class="dropdown-menu" id="parentMenu" role="menu" aria-labelledby="dropdownMenu" ng-cloak>
 
                 <!-- Child Menu -->
-                <li class="dropdown-submenu" ng-repeat="menu in menus"><a href="#/products/{{menu.code}}/">{{menu.description['name'] |
+                <li class="dropdown-submenu" ng-repeat="category in categories.childs"><a href="#/products/{{category.code}}/">{{category.description.name |
                     uppercase}}</a>
-                    <ul class="dropdown-menu" ng-if="menu.childs">
+                    <ul class="dropdown-menu" ng-if="category.childs">
 
-                        <li class="dropdown-submenu" ng-repeat="submenu in menu.childs"><a href="#/products/{{submenu.id}}/">{{submenu.description['name']}}</a>
-                            <ul class="dropdown-menu" ng-if="submenu.childs">
-                                <li ng-repeat="subofsub in submenu.childs"><a href="#/products/productdesc/{{subofsub.id}}">{{subofsub.description['name']}}</a></li>
-
-                            </ul></li>
+                        <li class="dropdown-submenu" ng-repeat="cat in category.childs">
+                            <a href="#/products/{{cat.code}}/">{{cat.description.name}}</a>
+                        </li>
 
                     </ul>
                 </li>

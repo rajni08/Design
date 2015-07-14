@@ -67,11 +67,31 @@ homeng.config(['$routeProvider',
 
 
 // menu angular controller
+homeng.controller('menucontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage',  function ($scope, $http, $routeParams, $cookieStore, $localStorage) {
 
 
+
+    var config = {
+        headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
+    };
+
+    $http.get('http://23.21.105.180/sm-shop/ecom/v0/category/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
+        $scope.menus = data;
+
+    }).
+        error(function (data, status, headers, config) {
+            $scope.menus = 'Something Went Wrong';
+        });
+}]);
 
 //Product Controller
-
+homeng.controller('menumodify', ['$scope', function($scope) {
+    $scope.templates =
+        [ { name: 'horizontal', url: 'partials/menustyle1.html'},
+            { name: 'left', url: 'partials/menustyle2.html'},
+            { name: 'right', url: 'partials/menustyle3.html'}];
+     $scope.template = $scope.templates[0];
+}]);
 
 homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage',  function ($scope, $http, $routeParams, $cookieStore, $localStorage) {
 
@@ -82,14 +102,10 @@ homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$coo
     };
 
 
-    $http.get('http://23.21.105.180/sm-shop/ecom/v0/category/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
-        $scope.menus = data;
 
-    }).
-        error(function (data, status, headers, config) {
-            $scope.menus = 'Something Went Wrong';
-        });
+    if(code != 'undefined' || code=='') {
 
+       // alert(code);
     $http.get('http://23.21.105.180/sm-shop/ecom/v0/category/f487bdb31ea311e59561fb44642aa5bc/'+ code +'/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
         $scope.categories = data;
 
@@ -97,14 +113,17 @@ homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$coo
         error(function (data, status, headers, config) {
             $scope.categories = 'Something Went Wrong';
         });
+    }
 
-   $http.get('http://23.21.105.180/sm-shop/ecom/v0/products/list/f487bdb31ea311e59561fb44642aa5bc/en/'+ code +'?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
-        $scope.itemdatas = data;
+    if(code!='undefined') {
+        $http.get('http://23.21.105.180/sm-shop/ecom/v0/products/list/f487bdb31ea311e59561fb44642aa5bc/en/' + code + '?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
+            $scope.itemdatas = data;
 
-    }).
-        error(function (data, status, headers, config) {
-            $scope.itemdatas = 'Something Went Wrong';
-        });
+        }).
+            error(function (data, status, headers, config) {
+                $scope.itemdatas = 'Something Went Wrong';
+            });
+    }
 
 
     $scope.click = function (name, quantity) {
