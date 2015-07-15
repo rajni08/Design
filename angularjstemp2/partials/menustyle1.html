@@ -32,7 +32,7 @@
                             <a tabindex="-1" ng-href="#/products/{{submenu.code}}/">{{submenu.description['name']}}</a>
                             <ul class="dropdown-menu" ng-if="submenu.childs">
                                 <li class="dropdown-submenu" ng-repeat="subofsub in submenu.childs">
-                                    <a ng-href="#/products/{{subofsub.code}}">{{subofsub.description['name']}}</a>
+                                    <a ng-href="#/products/{{subofsub.id}}">{{subofsub.description['name']}}</a>
                                 </li>
                             </ul>
                         </li>

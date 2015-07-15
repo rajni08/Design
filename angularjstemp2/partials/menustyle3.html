@@ -51,19 +51,19 @@
         <div class="col-md-3" ng-controller="menucontroller">
 
             <p class="lead">{{categories.description.name}}</p>
-            <ul class="dropdown-menu" id="parentMenu" role="menu" aria-labelledby="dropdownMenu" ng-cloak>
+            <ul class="dropdown-menu" id="parentMenu" role="menu" aria-labelledby="dropdownMenu"
+                ng-cloak>
 
                 <!-- Child Menu -->
-                <li class="dropdown-submenu" ng-repeat="menu in menus"><a href="#/products/{{menu.code}}/">{{menu.description['name'] |
+                <li class="dropdown-submenu right-aligned-menu" ng-repeat="menu in menus"><a
+                        href="#/products/{{menu.code}}/">{{menu.description['name'] |
                     uppercase}}</a>
                     <ul class="dropdown-menu" ng-if="menu.childs">
 
-                        <li class="dropdown-submenu" ng-repeat="submenu in menu.childs"><a
+                        <li class="dropdown-submenu right-aligned-submenu" ng-repeat="submenu in menu.childs"><a
                                 href="#/products/{{submenu.code}}/">{{submenu.description['name']}}</a>
-                            <ul class="dropdown-menu" ng-if="submenu.childs">
-                                <li ng-repeat="subofsub in submenu.childs"><a
-                                        href="#/products/{{subofsub.code}}/">{{subofsub.description['name
-                                    ']}}</a></li>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="subofsub in submenu.childs"><a href="#/products/{{subofsub.code}}/">{{subofsub.description['name']}}</a></li>
 
                             </ul></li>
 

@@ -53,17 +53,13 @@
 
 
 
-<div ng-controller="menumodify">
-    <select ng-model="template" ng-options="t.name for t in templates">
-        <option value="">(blank)</option>
-    </select>
-   
-    <hr/>
-    <div class="slide-animate-container">
-        <div class="slide-animate" ng-include="template.url"></div>
-    </div>
-</div>
 
+
+<div class="slide-animate-container">
+
+        <div class="slide-animate" ng-include="template.url"></div>
+
+</div>
 
 <div class="container">
     <div class="row">

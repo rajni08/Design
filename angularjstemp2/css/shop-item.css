@@ -757,6 +757,27 @@ h3.dark-grey {
     -moz-border-radius: 0 6px 6px;
     border-radius: 0 6px 6px 6px;
 }
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    /*right:100%;*/
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu.right-aligned-menu>.dropdown-menu {
+    top: 0;
+    left: auto !important;
+    right:100% !important;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
 
 
 
@@ -927,6 +948,50 @@ li.dropdown:hover > .dropdown-submenu:hover .dropdown-menu{
     border-color: #ddd transparent #ddd #ddd;
     *border-right-color: #ffffff;
 }
+
+
+
+
+.slide-animate-container {
+    position:relative;
+
+}
+
+.slide-animate {
+    padding:10px;
+}
+
+.slide-animate.ng-enter, .slide-animate.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    -moz-transition:all linear 0.5s;
+    -o-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+
+
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    display:block;
+    padding:10px;
+}
+
+.slide-animate.ng-enter {
+    top:-50px;
+}
+.slide-animate.ng-enter.ng-enter-active {
+    top:0;
+}
+
+.slide-animate.ng-leave {
+    top:0;
+}
+.slide-animate.ng-leave.ng-leave-active {
+    top:50px;
+}
+
+
 
 
 
