@@ -93,6 +93,32 @@ homeng.controller('menumodify', ['$scope', function($scope) {
      $scope.template = $scope.templates[0];
 }]);
 
+//Home Featured product Controller
+homeng.controller('featured', function ($scope, $http, $routeParams) {
+
+
+
+
+
+
+
+    var config = {
+        headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
+    };
+
+
+    $http.get('http://23.21.105.180/sm-shop/ecom/v0/featuredproduct/en/f487bdb31ea311e59561fb44642aa5bc?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, config, status, headers) {
+        $scope.featuredpros = data;
+
+    }).
+        error(function (data, status, headers, config) {
+            $scope.featuredpros = 'Something Went Wrong';
+        });
+
+    // alert(prodesc_url);
+
+});
+
 homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage',  function ($scope, $http, $routeParams, $cookieStore, $localStorage) {
 
     var code = $routeParams.code;
