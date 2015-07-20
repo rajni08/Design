@@ -2,7 +2,7 @@
 
 // Angular Module
 
-var homeng = angular.module('homeng', ['ngCookies', 'ngStorage','720kb.tooltips']);
+var homeng = angular.module('homeng', ['ngCookies', 'ngStorage','720kb.tooltips','ngSanitize']);
 
 
 //include Common menu in angular js
@@ -84,22 +84,19 @@ homeng.controller('menucontroller', ['$scope', '$http', '$routeParams', '$cookie
         });
 }]);
 
+
+
 //Product Controller
 homeng.controller('menumodify', ['$scope', function($scope) {
     $scope.templates =
         [ { name: 'horizontal', url: 'partials/menustyle1.html'},
-            { name: 'left', url: 'partials/menustyle2.html'},
-            { name: 'right', url: 'partials/menustyle3.html'}];
+            { name: 'left', url: 'partials/menustyle2.html'}];
+            //{ name: 'right', url: 'partials/menustyle3.html'}];
      $scope.template = $scope.templates[0];
 }]);
 
 //Home Featured product Controller
 homeng.controller('featured', function ($scope, $http, $routeParams) {
-
-
-
-
-
 
 
     var config = {
@@ -184,7 +181,7 @@ homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$coo
 
 
 //Product description Controller
-homeng.controller('productdesccontroller', function ($scope, $http, $routeParams) {
+homeng.controller('productdesccontroller', '$scope', '$sanitize', '$http', '$routeParams', [function ($scope,$sanitize, $http, $routeParams) {
 
 
 
@@ -207,7 +204,7 @@ homeng.controller('productdesccontroller', function ($scope, $http, $routeParams
 
         // alert(prodesc_url);
 
-});
+}]);
 
 function slideShowController($scope, $timeout) {
     var slidesInSlideshow = 4;

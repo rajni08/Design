@@ -15,9 +15,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-3">
-                <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"></a>
+                <a ng-href="http://localhost/angularjstemp2/#/"> <img
+                        src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg" style="width: 100px; height: 100px;"></a>
             </div>
-            <div class="col-md-9 well">
+            <div class="col-md-9">
+                <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"
+                                                                      style="width: 100px; height: 100px;"></a>
             </div>
         </div>
     </div>
@@ -77,8 +80,13 @@
         <div class="carousel-inner" ng-controller="featured">
             <div class="item active">
                 <div class="row">
+                    <!--To get grey out-->
+                    <!--ng-class="{true:'greyed item', false:'item'}[feature.available]"-->
                     <div class="col-sm-2" ng-repeat="feature in featuredpros">
-                        <div class="col-item">
+
+
+                        <div class="col-item"  ng-class="{true:'item', false:'greyed item'}[feature.available]">
+                            <div class="overlay"></div>
                             <div class="photo productimages">
                                 <div ng-if="feature.quantity != '0'">
                                     <div class="ribbon-wrapper-green"><div class="ribbon-green">Sale</div></div>
@@ -88,8 +96,14 @@
                                 </div>
                                 <a ng-href="#/products/productdesc/{{feature.id}}/">
 
-                                    <img src="{{feature.image.imageUrl}}" class="img-responsive"
-                                         alt="{{feature.description.title}}" /></a>
+                                    <img ng-show="feature.image.imageUrl != null"
+                                         src="{{feature.image.imageUrl}}"
+                                         class="img-responsive"
+                                         alt="{{feature.description.title}}" />
+                                    <img ng-show="feature.image.imageUrl == null" src="img/No_image_available.svg"
+                                         class="img-responsive"
+                                         alt="{{feature.description.title}}" />
+                                </a>
 
                             </div>
 
@@ -133,6 +147,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>

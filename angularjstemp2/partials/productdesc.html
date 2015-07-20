@@ -3,12 +3,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-        <div class="col-md-3">
-            <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"></a>
+            <div class="col-md-3">
+                <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"></a>
+            </div>
+            <div class="col-md-9 well">
+            </div>
         </div>
-        <div class="col-md-9 well">
-        </div>
-     </div>
     </div>
 </div>
 
@@ -43,13 +43,13 @@
                     </div>
 
                     <div class="container service1-items col-sm-2 col-md-2 pull-left">
-                    <center>
-                     <div ng-repeat="additionalimage in prodescdata.images">
-                    <a id="item-{{$index + 1}}" class="service1-item" >
-                    <img src="{{additionalimage.imageUrl}}" alt="">
-                    </a>
-                     </div>
-                    </center>
+                        <center>
+                            <div ng-repeat="additionalimage in prodescdata.images">
+                                <a id="item-{{$index + 1}}" class="service1-item" >
+                                    <img src="{{additionalimage.imageUrl}}" alt="">
+                                </a>
+                            </div>
+                        </center>
                     </div>
                     <div class="col-md-7">
                         <div class="product-title">{{prodescdata.description.name}}</div>
@@ -93,8 +93,8 @@
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="service-one">
 
-                        <section class="container product-info">
-                            {{prodescdata.description.description}}
+                        <section class="container product-info" ng-bind-html="prodescdata.description.description">
+
                         </section>
 
                     </div>
