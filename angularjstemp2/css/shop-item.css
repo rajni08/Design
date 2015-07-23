@@ -7,6 +7,9 @@
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
+h1{
+    color:#d58512;
+}
 
 .thumbnail img {
     width: 100%;
@@ -186,6 +189,12 @@ height: 100px; width:88%; left:2%;
 
 .search-bar{
     margin-bottom: 2%;
+}
+
+.typeahead.dropdown-menu {
+    cursor: pointer;
+    width: 100%;
+    margin-top:15px;
 }
 /*********************************/
 /********** Search Page**********/
@@ -559,11 +568,17 @@ ul.dropdown-cart li .item-right button{
 }
 
 .nav-mainmenuheader{
-background-color: #eee !important;
+background-color: #f8a119 !important;
+    border-top: 1px solid #f2f2f2;
+    box-shadow: 0 7px 20px -7px #ccc inset;
+    clear: both;
+    margin-top: 0;
+    overflow: hidden;
+    padding: 5px 5px;
 
 }
 .nav-innermenu{
-    background-color: #d58512 !important;
+    background-color: #b67a44 !important;
 }
 
 .navbar-inverse .navbar-nav > li > a{
@@ -775,6 +790,7 @@ h3.dark-grey {
     -webkit-border-radius: 0 6px 6px 6px;
     -moz-border-radius: 0 6px 6px;
     border-radius: 0 6px 6px 6px;
+    opacity: 0.85;
 }
 .dropdown-submenu>.dropdown-menu {
     top: 0;
@@ -877,7 +893,7 @@ li.dropdown:hover > .dropdown-submenu:hover .dropdown-menu{
 
 #parentMenu {
     display: block;
-    top: 52px;
+    /*top: 52px;*/
     width: 95%;
 }
 /* Helps position submenu */

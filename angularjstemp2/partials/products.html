@@ -11,100 +11,13 @@
     <!--</td>-->
 <!--</tr>-->
 <!--</table>-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"></a>
-            </div>
-            <div class="col-md-9 well">
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 search-bar">
 
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
-
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button" >
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="container">
-    <div class="row" ng-controller="menucontroller" ng-cloak>
-
-
-        <div class="col-md-3">
-
-
-            <h3  style="position: relative;">{{categories.description.name}}</h3>
-            <ul class="dropdown-menu" id="parentMenu" role="menu" aria-labelledby="dropdownMenu" ng-cloak>
-
-                <!-- Child Menu -->
-                <li class="dropdown-submenu" ng-repeat="category in categories.childs">
-                    <a href="#/products/{{category.code}}/">{{category.description.name |
-                    uppercase}}</a>
-                    <ul class="dropdown-menu" ng-if="category.childs">
-
-                        <li class="dropdown-submenu" ng-repeat="cat in category.childs">
-                            <a href="#/products/{{cat.code}}/">{{cat.description.name}}</a>
-                        </li>
-
-                    </ul>
-                </li>
-            </ul>
-            <!--<div class="list-group">-->
-                <!---->
-
-                <!--&lt;!&ndash;<a class="list-group-item"  ng-click="myFilter = {category: 1}">Mobile</a>&ndash;&gt;-->
-                <!--&lt;!&ndash;<a class="list-group-item"  ng-click="myFilter = {category: 2}">Tab</a>&ndash;&gt;-->
-                <!--&lt;!&ndash;<a class="list-group-item" ng-click="myFilter = {category: 3}">Others</a>&ndash;&gt;-->
-                <!--&lt;!&ndash;<a class="list-group-item" ng-click="myFilter = null">All</a>&ndash;&gt;-->
-                <!--<a class="list-group-item" ng-repeat="category in categories.childs">-->
-
-                    <!--{{ category.description.name }}-->
-
-                <!--</a>-->
-
-
-
-            <!--</div>-->
-        </div>
-
-        <div class="col-md-9">
-
-            <div class="thumbnail">
-                <img alt="" src="http://placehold.it/800x300" class="img-responsive">
-            </div>
-
-
-
-        </div>
-
-    </div>
-</div>
 <div class="container">
     <div class="row">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" ng-controller="menucontroller">
 
-
+                <h1>{{categories.description.name}}</h1>
                 <hr>
             </div>
 

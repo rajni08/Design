@@ -2,7 +2,7 @@
 
 // Angular Module
 
-var homeng = angular.module('homeng', ['ngCookies', 'ngStorage','720kb.tooltips','ngSanitize']);
+var homeng = angular.module('homeng', ['ngCookies', 'ngStorage','720kb.tooltips','ngSanitize','ui.bootstrap']);
 
 
 //include Common menu in angular js
@@ -47,6 +47,10 @@ homeng.config(['$routeProvider',
             when('/products/productdesc/:id', {
                 templateUrl: 'partials/productdesc.html',
                 controller: 'productdesccontroller'
+            }).
+            when('/searchresults/:pname', {
+                templateUrl: 'partials/searchpage.html',
+                controller: 'searchrescontroller'
             }).
             when('/tabpage', {
                 templateUrl: 'partials/tabpage.html',
@@ -99,18 +103,55 @@ homeng.controller('menumodify', ['$scope', function($scope) {
 homeng.controller('featured', function ($scope, $http, $routeParams) {
 
 
-    var config = {
-        headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
-    };
+    var config ={
+         'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'
+        };
 
 
     $http.get('http://23.21.105.180/sm-shop/ecom/v0/featuredproduct/en/f487bdb31ea311e59561fb44642aa5bc?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, config, status, headers) {
         $scope.featuredpros = data;
 
     }).
-        error(function (data, status, headers, config) {
-            $scope.featuredpros = 'Something Went Wrong';
-        });
+    error(function (data, status, headers, config) {
+        $scope.featuredpros = 'Something Went Wrong';
+    });
+
+
+    $scope.addProduct=function(prodsku,noofitems){
+        $scope.prodsku = prodsku;
+        $scope.noofitems = noofitems;
+        //$scope.incartproducts = [];
+
+        var dataObj = {
+
+            quantity : $scope.noofitems,
+            productId : $scope.prodsku
+
+        };
+
+    console.log(dataObj);
+        //$http({
+        //    url: 'http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1',
+        //    method: "POST",
+        //    data: dataObj
+        //
+        //}).success(function (data) {
+        //    $scope.persons = data; // assign  $scope.persons here as promise is resolved here
+        //}).error(function (data, status) {
+        //    $scope.status = status;
+        //});
+
+
+        $http.post('http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1',dataObj, config ).success(function (data, config, status, headers) {
+        console.log(data);
+        $scope.addingtoCart = data;
+
+        }).
+            error(function (data, status, headers, config) {
+                $scope.addingtoCart = alert('Something Went Wrong'+ JSON.stringify({data: data}));
+            });
+
+    };
 
     // alert(prodesc_url);
 
@@ -181,7 +222,7 @@ homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$coo
 
 
 //Product description Controller
-homeng.controller('productdesccontroller', '$scope', '$sanitize', '$http', '$routeParams', [function ($scope,$sanitize, $http, $routeParams) {
+homeng.controller('productdesccontroller',[ '$scope',  '$http', '$routeParams', function ($scope, $http, $routeParams) {
 
 
 
@@ -197,12 +238,81 @@ homeng.controller('productdesccontroller', '$scope', '$sanitize', '$http', '$rou
         $http.get('http://23.21.105.180/sm-shop/ecom/v0/product/f487bdb31ea311e59561fb44642aa5bc/'+  pid +'?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, config, status, headers) {
             $scope.prodescdata = data;
 
+
+
         }).
             error(function (data, status, headers, config) {
                 $scope.prodescdata = 'Something Went Wrong';
             });
 
+
+
         // alert(prodesc_url);
+
+}]);
+
+//Search Controller
+homeng.controller('searchccontroller',[ '$scope','$http','$routeParams', function ($scope,$http,$routeParams) {
+    var config = {
+        headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
+    };
+    var pname = $routeParams.pname;
+
+
+    $scope.keyPress = function(keyCode) {
+        var keycode = keyCode;
+
+        $http.get('http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/autocomplete?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+ keycode , config).success(function (data, config, status, headers) {
+            $scope.titles = data;
+
+
+        }).
+            error(function (data, status, headers, config) {
+                $scope.titles = 'Something Went Wrong';
+            });
+
+    };
+    $scope.clickitem=function(searchkey){
+
+
+            $http.get('http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/1/5?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+searchkey, config).success(function (data, config, status, headers) {
+                $scope.searcheditems = data;
+
+                alert(data)
+                console.log(data);
+
+            }).
+                error(function (data, status, headers, config) {
+                    $scope.searcheditems = 'Something Went Wrong';
+                });
+
+    };
+
+}]);
+homeng.controller('searchrescontroller',[ '$scope','$http','$routeParams', function ($scope,$http,$routeParams) {
+    var config = {
+        headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
+    };
+
+
+    var pname = $routeParams.pname;
+
+    alert(pname);
+
+
+
+    var url='http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/1/5?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+pname;
+        alert(url);
+
+        $http.get(url, config).success(function (data, config, status, headers) {
+            $scope.searched = data;
+            console.log(data);
+
+        }).
+            error(function (data, status, headers, config) {
+                $scope.searched = 'Something Went Wrong';
+            });
+
 
 }]);
 
@@ -228,6 +338,7 @@ homeng.controller('checkoutcntr', function ($scope, $http) {
 });
 //Login Controller
 homeng.controller('tabpagecntr', function ($scope, $http) {
+
 
 });
 

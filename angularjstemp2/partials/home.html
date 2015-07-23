@@ -11,58 +11,6 @@
 <!--</td>-->
 <!--</tr>-->
 <!--</table>-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <a ng-href="http://localhost/angularjstemp2/#/"> <img
-                        src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg" style="width: 100px; height: 100px;"></a>
-            </div>
-            <div class="col-md-9">
-                <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"
-                                                                      style="width: 100px; height: 100px;"></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 search-bar">
-
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
-
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-small" type="button" >
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-
-
-
-            </div>
-        </div>
-        <div class="col-md-2">
-            <i class="glyphicon glyphicon-shopping-cart homecart-icon"></i>
-            <span class="badge homecart-badge pull-right">1</span>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div class="slide-animate-container">
-
-    <div class="slide-animate" ng-include="template.url"></div>
-
-</div>
 
 <div class="container">
     <div class="row">
@@ -132,16 +80,16 @@
                                                class="form-control text-center"
                                                value={{feature.quantityOrderMinimum}}
                                                min={{feature.quantityOrderMinimum}}
-                                               max={{feature.quantityOrderMaximum}}></p>
+                                               max={{feature.quantityOrderMaximum}} ></p>
                                     <p class="btn-details">
 
                                         <!--ng-click="addToCart(product.id,product.price,product.productname,1)"-->
 
-                                        <a href="" class="hidden-sm btn btn-group-sm btn-primary"
-                                           ng-click="click(product,quantity)"
-                                           ng-disabled="quantity == null || prod.quantity == '0'">
-                                            <i class="fa fa-shopping-cart"></i>Add
-                                        </a></p>
+                                        <input type="button" class="hidden-sm btn btn-group-sm btn-primary"
+                                           ng-click="addProduct(feature.sku,quantity)"
+                                           ng-disabled="quantity == null || feature.quantity == '0'" value="Add">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </p>
                                 </div>
                                 <div class="clearfix">
                                 </div>
