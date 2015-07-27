@@ -56,12 +56,10 @@ homeng.config(['$routeProvider',
                 templateUrl: 'partials/tabpage.html',
                 controller: 'tabpagecntr'
             }).
-
             when('/checkout', {
                 templateUrl: 'partials/checkout.html',
                 controller: ''
             }).
-
             otherwise({
 
                 redirectTo: '/'
@@ -107,9 +105,13 @@ homeng.controller('featured', function ($scope, $http, $routeParams) {
          'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'
         };
 
+var feat_url='http://23.21.105.180/sm-shop/ecom/v0/featuredproduct/en/f487bdb31ea311e59561fb44642aa5bc?access_token=acc063fa-9df8-4a65-9401-332909d929f1';
 
-    $http.get('http://23.21.105.180/sm-shop/ecom/v0/featuredproduct/en/f487bdb31ea311e59561fb44642aa5bc?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, config, status, headers) {
+
+    $http.get(feat_url, config).success(function (data, config, status, headers) {
         $scope.featuredpros = data;
+
+        console.log(data);
 
     }).
     error(function (data, status, headers, config) {
@@ -117,19 +119,21 @@ homeng.controller('featured', function ($scope, $http, $routeParams) {
     });
 
 
-    $scope.addProduct=function(prodsku,noofitems){
+    $scope.addProduct=function(prodsku,noofitems,code){
+        $scope.code =code;
         $scope.prodsku = prodsku;
         $scope.noofitems = noofitems;
         //$scope.incartproducts = [];
 
-        var dataObj = {
+        var dataObj =
+                {
+                    "code": "",
+                    "quantity": $scope.noofitems,
+                    "productId" : $scope.prodsku
+                };
 
-            quantity : $scope.noofitems,
-            productId : $scope.prodsku
 
-        };
-
-    console.log(dataObj);
+         console.log(JSON.stringify(dataObj));
         //$http({
         //    url: 'http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1',
         //    method: "POST",
@@ -146,10 +150,8 @@ homeng.controller('featured', function ($scope, $http, $routeParams) {
         console.log(data);
         $scope.addingtoCart = data;
 
-        }).
-            error(function (data, status, headers, config) {
-                $scope.addingtoCart = alert('Something Went Wrong'+ JSON.stringify({data: data}));
-            });
+        })
+
 
     };
 
@@ -265,20 +267,22 @@ homeng.controller('searchccontroller',[ '$scope','$http','$routeParams', functio
         $http.get('http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/autocomplete?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+ keycode , config).success(function (data, config, status, headers) {
             $scope.titles = data;
 
-
-        }).
+            }).
             error(function (data, status, headers, config) {
                 $scope.titles = 'Something Went Wrong';
             });
 
     };
     $scope.clickitem=function(searchkey){
+        if(searchkey=="")
+        {
+            var searchkey=document.getElementById(searchvalue);
 
-
+        }
             $http.get('http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/1/5?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+searchkey, config).success(function (data, config, status, headers) {
                 $scope.searcheditems = data;
 
-                alert(data)
+
                 console.log(data);
 
             }).
@@ -296,16 +300,19 @@ homeng.controller('searchrescontroller',[ '$scope','$http','$routeParams', funct
 
 
     var pname = $routeParams.pname;
-
     alert(pname);
+    if(pname=="" || pname==null)
+    {
+         pname=document.getElementById(searchvalue);
+        alert(pname);
 
-
+    }
 
     var url='http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/1/5?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+pname;
-        alert(url);
+
 
         $http.get(url, config).success(function (data, config, status, headers) {
-            $scope.searched = data;
+            $scope.searched = data.products;
             console.log(data);
 
         }).
@@ -330,7 +337,70 @@ function slideShowController($scope, $timeout) {
 
 //Login Controller
 homeng.controller('logincontroller', function ($scope, $http) {
+    $scope.doRegister=function(){
 
+
+         var dataInfo =  {
+                "emailAddress" : $scope.r_username,
+                "billing" : {
+                "firstName" : $scope.rb_firstName,
+                    "lastName" : $scope.rb_lastName,
+                    "bilstateOther" : $scope.rb_bilstateOther,
+                    "company" : $scope.rb_company,
+                    "phone" :  $scope.rb_phone,
+                    "address" : $scope.rb_address,
+                    "city" : $scope.rb_city,
+                    "postalCode" : $scope.rb_postalCode,
+                    "stateProvince" :  $scope.rb_stateProvince,
+                    "billingAddress" : $scope.rb_billingAddress,
+                    "zone" : $scope.rb_zone,
+                    "country" : $scope.rb_country
+            },
+                "delivery" : {
+                "firstName" : $scope.rd_firstName,
+                    "lastName" : $scope.rd_lastName,
+                    "bilstateOther" : $scope.rd_bilstateOther,
+                    "company" : $scope.rd_company,
+                    "phone" : $scope.rd_phone,
+                    "address" : $scope.rd_address,
+                    "city" : $scope.rd_city,
+                    "postalCode" : $scope.rd_postalCode,
+                    "stateProvince" : $scope.rd_stateProvince,
+                    "billingAddress" : $scope.rd_billingAddress,
+                    "zone" : $scope.rd_zone,
+                    "country" : $scope.rd_country
+            },
+                "gender" : $scope.identify,
+                "language" : "en",
+                "firstName" :  $scope.r_firstname,
+                "lastName" : $scope.r_lastname,
+                "encodedPassword" : $scope.r_password,
+                "clearPassword" : $scope.r_password,
+                "storeCode" : null,
+                "userName" : $scope.r_username,
+                "attributes" : null
+            };
+
+console.log(JSON.stringify(dataInfo));
+        //var config = {
+        //    headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
+        //};
+        //
+        //
+        //
+        //if(code != 'undefined' || code=='') {
+        //
+        //    // alert(code);
+        //    $http.get('http://23.21.105.180/sm-shop/ecom/v0/category/f487bdb31ea311e59561fb44642aa5bc/'+ code +'/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
+        //        $scope.categories = data;
+        //
+        //    }).
+        //        error(function (data, status, headers, config) {
+        //            $scope.categories = 'Something Went Wrong';
+        //        });
+        //}
+
+    };
 });
 //Login Controller
 homeng.controller('checkoutcntr', function ($scope, $http) {

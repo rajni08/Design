@@ -343,7 +343,11 @@ height: 100px; width:88%; left:2%;
     padding: 8px;
 
 }
-
+.heading-address {
+    background: #ccc none repeat scroll 0 0;
+    padding: 2%;
+    width: 100%;
+}
 
 .ribbon-wrapper-green {
     height: 77px;

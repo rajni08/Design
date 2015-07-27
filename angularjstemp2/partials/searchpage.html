@@ -23,13 +23,15 @@
             </div><!--/span-->
 
             <div class="col-xs-12 col-sm-7 cart-fixed-container" >
-                <div class="row" ng-repeat="searc in searched | filter: search">
+                <div class="row" ng-repeat="searc in searched track by $index | filter: search">
                     <div class="col-6 col-sm-6 col-lg-4">
-                        <img src="{{searc.imageUrl}}" class="img-responsive">
+                        <img src="{{searc.image.imageUrl}}" class="img-responsive">
                     </div><!--/span-->
                     <div class="col-sm-6 col-lg-4">
-                        <h5>{{searc.productname}}-{{searc.id}}</h5>
-                        <p>Bootply is a playground for Bootstrap that enables developers and designers to test, prototype and create mockups using Bootstrap friendly HTML, CSS and Javascript. Bootstrap is a front-end framework that uses CSS and JavaScript to facilitate responsive Web design. </p>
+                        <h5>{{searc.description.name}}-{{searc.id}}</h5>
+                        <p>
+                            {{searc.description.description | cut:true:35:' ...'}}
+                        </p>
 
                     </div><!--/span-->
                     <div class="col-sm-6 col-lg-4">
