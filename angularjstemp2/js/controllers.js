@@ -2,7 +2,7 @@
 
 // Angular Module
 
-var homeng = angular.module('homeng', ['ngCookies', 'ngStorage','720kb.tooltips','ngSanitize','ui.bootstrap']);
+var homeng = angular.module('homeng', ['ngCookies', 'ngStorage', '720kb.tooltips', 'ngSanitize', 'ui.bootstrap']);
 
 
 //include Common menu in angular js
@@ -25,7 +25,6 @@ homeng.filter('cut', function () {
         return value + (tail || ' …');
     };
 });
-
 
 
 homeng.config(['$routeProvider',
@@ -67,10 +66,8 @@ homeng.config(['$routeProvider',
     }]);
 
 
-
 // menu angular controller
-homeng.controller('menucontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage',  function ($scope, $http, $routeParams, $cookieStore, $localStorage) {
-
+homeng.controller('menucontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage', function ($scope, $http, $routeParams, $cookieStore, $localStorage) {
 
 
     var config = {
@@ -87,25 +84,24 @@ homeng.controller('menucontroller', ['$scope', '$http', '$routeParams', '$cookie
 }]);
 
 
-
 //Product Controller
-homeng.controller('menumodify', ['$scope', function($scope) {
+homeng.controller('menumodify', ['$scope', function ($scope) {
     $scope.templates =
-        [ { name: 'horizontal', url: 'partials/menustyle1.html'},
-            { name: 'left', url: 'partials/menustyle2.html'}];
-            //{ name: 'right', url: 'partials/menustyle3.html'}];
-     $scope.template = $scope.templates[0];
+        [{name: 'horizontal', url: 'partials/menustyle1.html'},
+            {name: 'left', url: 'partials/menustyle2.html'}];
+    //{ name: 'right', url: 'partials/menustyle3.html'}];
+    $scope.template = $scope.templates[0];
 }]);
 
 //Home Featured product Controller
 homeng.controller('featured', function ($scope, $http, $routeParams) {
 
 
-    var config ={
-         'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'
-        };
+    var config = {
+        'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'
+    };
 
-var feat_url='http://23.21.105.180/sm-shop/ecom/v0/featuredproduct/en/f487bdb31ea311e59561fb44642aa5bc?access_token=acc063fa-9df8-4a65-9401-332909d929f1';
+    var feat_url = 'http://23.21.105.180/sm-shop/ecom/v0/featuredproduct/en/f487bdb31ea311e59561fb44642aa5bc?access_token=acc063fa-9df8-4a65-9401-332909d929f1';
 
 
     $http.get(feat_url, config).success(function (data, config, status, headers) {
@@ -114,43 +110,30 @@ var feat_url='http://23.21.105.180/sm-shop/ecom/v0/featuredproduct/en/f487bdb31e
         console.log(data);
 
     }).
-    error(function (data, status, headers, config) {
-        $scope.featuredpros = 'Something Went Wrong';
-    });
+        error(function (data, status, headers, config) {
+            $scope.featuredpros = 'Something Went Wrong';
+        });
 
 
-    $scope.addProduct=function(prodsku,noofitems,code){
-        $scope.code =code;
-        $scope.prodsku = prodsku;
+    $scope.addProduct = function (prodsku, noofitems) {
+        //$scope.code = code;
+        $scope.id = prodsku;
         $scope.noofitems = noofitems;
         //$scope.incartproducts = [];
 
-        var dataObj =
-                {
-                    "code": "",
-                    "quantity": $scope.noofitems,
-                    "productId" : $scope.prodsku
-                };
+        $scope.dataObj =
+        {
+            "quantity": $scope.noofitems,
+            "productId": $scope.id
+        };
 
+        var moredata = angular.toJson($scope.dataObj);
 
-         console.log(JSON.stringify(dataObj));
-        //$http({
-        //    url: 'http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1',
-        //    method: "POST",
-        //    data: dataObj
-        //
-        //}).success(function (data) {
-        //    $scope.persons = data; // assign  $scope.persons here as promise is resolved here
-        //}).error(function (data, status) {
-        //    $scope.status = status;
-        //});
+        $http.post('http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', moredata, config).success(function (data, config, status, headers) {
 
+            $scope.addingtoCart = data;
 
-        $http.post('http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1',dataObj, config ).success(function (data, config, status, headers) {
-        console.log(data);
-        $scope.addingtoCart = data;
-
-        })
+        });
 
 
     };
@@ -159,7 +142,7 @@ var feat_url='http://23.21.105.180/sm-shop/ecom/v0/featuredproduct/en/f487bdb31e
 
 });
 
-homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage',  function ($scope, $http, $routeParams, $cookieStore, $localStorage) {
+homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage', function ($scope, $http, $routeParams, $cookieStore, $localStorage) {
 
     var code = $routeParams.code;
 
@@ -168,20 +151,19 @@ homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$coo
     };
 
 
+    if (code != 'undefined' || code == '') {
 
-    if(code != 'undefined' || code=='') {
+        // alert(code);
+        $http.get('http://23.21.105.180/sm-shop/ecom/v0/category/f487bdb31ea311e59561fb44642aa5bc/' + code + '/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
+            $scope.categories = data;
 
-       // alert(code);
-    $http.get('http://23.21.105.180/sm-shop/ecom/v0/category/f487bdb31ea311e59561fb44642aa5bc/'+ code +'/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
-        $scope.categories = data;
-
-    }).
-        error(function (data, status, headers, config) {
-            $scope.categories = 'Something Went Wrong';
-        });
+        }).
+            error(function (data, status, headers, config) {
+                $scope.categories = 'Something Went Wrong';
+            });
     }
 
-    if(code!='undefined') {
+    if (code != 'undefined') {
         $http.get('http://23.21.105.180/sm-shop/ecom/v0/products/list/f487bdb31ea311e59561fb44642aa5bc/en/' + code + '?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
             $scope.itemdatas = data;
 
@@ -222,78 +204,72 @@ homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$coo
 }]);
 
 
-
 //Product description Controller
-homeng.controller('productdesccontroller',[ '$scope',  '$http', '$routeParams', function ($scope, $http, $routeParams) {
+homeng.controller('productdesccontroller', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
 
 
-
-        var pid = $routeParams.id;
-
+    var pid = $routeParams.id;
 
 
-        var config = {
-            headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
-        };
+    var config = {
+        headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
+    };
 
 
-        $http.get('http://23.21.105.180/sm-shop/ecom/v0/product/f487bdb31ea311e59561fb44642aa5bc/'+  pid +'?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, config, status, headers) {
-            $scope.prodescdata = data;
+    $http.get('http://23.21.105.180/sm-shop/ecom/v0/product/f487bdb31ea311e59561fb44642aa5bc/' + pid + '?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, config, status, headers) {
+        $scope.prodescdata = data;
 
 
-
-        }).
-            error(function (data, status, headers, config) {
-                $scope.prodescdata = 'Something Went Wrong';
-            });
-
+    }).
+        error(function (data, status, headers, config) {
+            $scope.prodescdata = 'Something Went Wrong';
+        });
 
 
-        // alert(prodesc_url);
+    // alert(prodesc_url);
 
 }]);
 
 //Search Controller
-homeng.controller('searchccontroller',[ '$scope','$http','$routeParams', function ($scope,$http,$routeParams) {
+homeng.controller('searchccontroller', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     var config = {
         headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
     };
     var pname = $routeParams.pname;
 
 
-    $scope.keyPress = function(keyCode) {
+    $scope.keyPress = function (keyCode) {
         var keycode = keyCode;
 
-        $http.get('http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/autocomplete?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+ keycode , config).success(function (data, config, status, headers) {
+        $http.get('http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/autocomplete?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q=' + keycode, config).success(function (data, config, status, headers) {
             $scope.titles = data;
 
-            }).
+        }).
             error(function (data, status, headers, config) {
                 $scope.titles = 'Something Went Wrong';
             });
 
     };
-    $scope.clickitem=function(searchkey){
-        if(searchkey=="")
-        {
-            var searchkey=document.getElementById(searchvalue);
+    $scope.clickitem = function (searchkey) {
+        if (searchkey == "") {
+            var searchkey = document.getElementById(searchvalue);
 
         }
-            $http.get('http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/1/5?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+searchkey, config).success(function (data, config, status, headers) {
-                $scope.searcheditems = data;
+        $http.get('http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/1/5?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q=' + searchkey, config).success(function (data, config, status, headers) {
+            $scope.searcheditems = data;
 
 
-                console.log(data);
+            console.log(data);
 
-            }).
-                error(function (data, status, headers, config) {
-                    $scope.searcheditems = 'Something Went Wrong';
-                });
+        }).
+            error(function (data, status, headers, config) {
+                $scope.searcheditems = 'Something Went Wrong';
+            });
 
     };
 
 }]);
-homeng.controller('searchrescontroller',[ '$scope','$http','$routeParams', function ($scope,$http,$routeParams) {
+homeng.controller('searchrescontroller', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
     var config = {
         headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
     };
@@ -301,24 +277,23 @@ homeng.controller('searchrescontroller',[ '$scope','$http','$routeParams', funct
 
     var pname = $routeParams.pname;
     alert(pname);
-    if(pname=="" || pname==null)
-    {
-         pname=document.getElementById(searchvalue);
+    if (pname == "" || pname == null) {
+        pname = document.getElementById(searchvalue);
         alert(pname);
 
     }
 
-    var url='http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/1/5?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q='+pname;
+    var url = 'http://23.21.105.180/sm-shop/ecom/v0/search/f487bdb31ea311e59561fb44642aa5bc/en/1/5?access_token=acc063fa-9df8-4a65-9401-332909d929f1&q=' + pname;
 
 
-        $http.get(url, config).success(function (data, config, status, headers) {
-            $scope.searched = data.products;
-            console.log(data);
+    $http.get(url, config).success(function (data, config, status, headers) {
+        $scope.searched = data.products;
+        console.log(data);
 
-        }).
-            error(function (data, status, headers, config) {
-                $scope.searched = 'Something Went Wrong';
-            });
+    }).
+        error(function (data, status, headers, config) {
+            $scope.searched = 'Something Went Wrong';
+        });
 
 
 }]);
@@ -337,70 +312,94 @@ function slideShowController($scope, $timeout) {
 
 //Login Controller
 homeng.controller('logincontroller', function ($scope, $http) {
-    $scope.doRegister=function(){
+    $scope.doRegister = function(){
+        var config = {
+            headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
+        };
 
+        $scope.dataInfo=  {
 
-         var dataInfo =  {
-                "emailAddress" : $scope.r_username,
-                "billing" : {
-                "firstName" : $scope.rb_firstName,
-                    "lastName" : $scope.rb_lastName,
-                    "bilstateOther" : $scope.rb_bilstateOther,
-                    "company" : $scope.rb_company,
-                    "phone" :  $scope.rb_phone,
-                    "address" : $scope.rb_address,
-                    "city" : $scope.rb_city,
-                    "postalCode" : $scope.rb_postalCode,
-                    "stateProvince" :  $scope.rb_stateProvince,
-                    "billingAddress" : $scope.rb_billingAddress,
-                    "zone" : $scope.rb_zone,
-                    "country" : $scope.rb_country
+            "emailAddress" : $scope.r_username,
+            "billing" : {
+                "firstName" : $scope.rb_firstname,
+                "lastName" : $scope.rb_lastname,
+                "bilstateOther" : $scope.rb_bilstateother,
+                "company" : $scope.rb_company,
+                "phone" : $scope.rb_phone,
+                "address" : $scope.rb_address,
+                "city" : $scope.rb_city,
+                "postalCode" : $scope.rb_postalCode,
+                "stateProvince" : $scope.rb_stateprovince,
+                "billingAddress" : $scope.rb_isitbill,
+                "zone" : "QC",
+                "country" : "CA"
             },
-                "delivery" : {
-                "firstName" : $scope.rd_firstName,
-                    "lastName" : $scope.rd_lastName,
-                    "bilstateOther" : $scope.rd_bilstateOther,
-                    "company" : $scope.rd_company,
-                    "phone" : $scope.rd_phone,
-                    "address" : $scope.rd_address,
-                    "city" : $scope.rd_city,
-                    "postalCode" : $scope.rd_postalCode,
-                    "stateProvince" : $scope.rd_stateProvince,
-                    "billingAddress" : $scope.rd_billingAddress,
-                    "zone" : $scope.rd_zone,
-                    "country" : $scope.rd_country
+            "delivery" : {
+                "firstName" : $scope.rd_firstname,
+                "lastName" : $scope.rd_lastname,
+                "bilstateOther" : $scope.rd_bilstateother,
+                "company" : $scope.rd_company,
+                "phone" : $scope.rd_phone,
+                "address" : $scope.rd_address,
+                "city" : $scope.rd_city,
+                "postalCode" : $scope.rd_postcode,
+                "stateProvince" : $scope.rd_stateProvince,
+                "billingAddress" : $scope.rd_isitbill,
+                "zone" : "QC",
+                "country" : "CA"
             },
-                "gender" : $scope.identify,
-                "language" : "en",
-                "firstName" :  $scope.r_firstname,
-                "lastName" : $scope.r_lastname,
-                "encodedPassword" : $scope.r_password,
-                "clearPassword" : $scope.r_password,
-                "storeCode" : null,
-                "userName" : $scope.r_username,
-                "attributes" : null
-            };
+            "gender" : $scope.identify.gender,
+            "language" : "en",
+            "firstName" : $scope.r_firstname,
+            "lastName" : $scope.r_lastname,
+            "encodedPassword" : null,
+            "clearPassword" : $scope.r_password,
+            "storeCode" : null,
+            "userName" : $scope.r_username,
+            "attributes" : null
+        };
 
-console.log(JSON.stringify(dataInfo));
-        //var config = {
-        //    headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
-        //};
-        //
-        //
-        //
-        //if(code != 'undefined' || code=='') {
-        //
-        //    // alert(code);
-        //    $http.get('http://23.21.105.180/sm-shop/ecom/v0/category/f487bdb31ea311e59561fb44642aa5bc/'+ code +'/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, status, headers, config) {
-        //        $scope.categories = data;
-        //
-        //    }).
-        //        error(function (data, status, headers, config) {
-        //            $scope.categories = 'Something Went Wrong';
-        //        });
-        //}
+       var moredata = angular.toJson($scope.dataInfo);
 
-    };
+
+        $http.post('http://23.21.105.180/sm-shop/ecom/v0/customer?access_token=acc063fa-9df8-4a65-9401-332909d929f1', moredata, config).success(function (data, config, status, headers) {
+            console.log(data);
+            $scope.registered = data;
+
+            $scope.r_username="";
+            //$scope.rb_firstname="";
+            //$scope.rb_lastname="";
+            //$scope.rb_bilstateother="";
+            //$scope.rb_company="";
+            //$scope.rb_phone="";
+            //$scope.rb_address="";
+            //$scope.rb_city="";
+            //$scope.rb_postalCode="";
+            //$scope.rb_stateprovince="";
+            //$scope.rb_isitbill="";
+            //
+            //$scope.rd_firstname="";
+            //$scope.rd_lastname="";
+            //$scope.rd_bilstateother="";
+            //$scope.rd_company="";
+            //$scope.rd_phone="";
+            //$scope.rd_address="";
+            //$scope.rd_city="";
+            //$scope.rd_postcode="";
+            //$scope.rd_stateProvince="";
+            //$scope.rd_isitbill="";
+            //
+            //$scope.identify.gender="";
+            //$scope.r_firstname="";
+            //$scope.r_lastname="";
+            //$scope.r_password="";
+
+
+
+        });
+
+
+    }
 });
 //Login Controller
 homeng.controller('checkoutcntr', function ($scope, $http) {

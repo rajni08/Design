@@ -35,6 +35,7 @@
                             <div class="col-md-6">
                                 <h3 class="dark-grey">Registration</h3>
 
+
                                 <div class="form-group col-lg-6">
                                     <label>First Name</label>
                                     <input type="text" name="" ng-model="r_firstname"  class="form-control"  value="">
@@ -70,7 +71,7 @@
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>Firstname</label>
-                                    <input type="text" name="" ng-model="rb_firstnaem" class="form-control"  value="">
+                                    <input type="text" name="" ng-model="rb_firstname" class="form-control"  value="">
                                 </div>
 
                                 <div class="form-group col-lg-6">
@@ -90,7 +91,7 @@
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>Phone</label>
-                                    <input type="text" name="" ng-model="r_email" class="form-control"  value="">
+                                    <input type="text" name="" ng-model="rb_phone" class="form-control"  value="">
                                 </div>
 
                                 <div class="form-group col-lg-12">
@@ -100,8 +101,13 @@
                                 </div>
 
                                 <div class="form-group col-lg-6">
+                                    <label>City</label>
+                                    <input type="text" name="" ng-model="rb_city" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
                                     <label>Postal Code</label>
-                                    <input type="text" name="" ng-model="rb_postcode" class="form-control"  value="">
+                                    <input type="text" name="" ng-model="rb_postalCode" class="form-control"  value="">
                                 </div>
 
                                 <div class="form-group col-lg-6">
@@ -159,13 +165,18 @@
                                 </div>
 
                                 <div class="form-group col-lg-6">
+                                    <label>City</label>
+                                    <input type="text" name="" ng-model="rd_city" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
                                     <label>Postal Code</label>
                                     <input type="text" name="" ng-model="rd_postcode" class="form-control"  value="">
                                 </div>
 
                                 <div class="form-group col-lg-6">
                                     <label>State Province</label>
-                                    <input type="text" name="" ng-model="rd_stateprovince" class="form-control"  value="">
+                                    <input type="text" name="" ng-model="rd_stateProvince" class="form-control"  value="">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>Is it Billing Address ?</label>
@@ -184,6 +195,10 @@
                                 <div class="form-group col-lg-12">
 
                                     <button type="submit" class="btn btn-primary">Register</button>
+                                </div>
+
+                                <div class="form-group col-lg-12" ng-if=="registered.message">
+                                    <span class="alert alert-success" >{{registered.message}}</span>
                                 </div>
 
 

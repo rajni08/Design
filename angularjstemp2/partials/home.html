@@ -85,10 +85,11 @@
                                         <!--ng-click="addToCart(product.id,product.price,product.productname,1)"-->
 
                                         <input type="button" class="hidden-sm btn btn-group-sm btn-primary"
-                                           ng-click="addProduct(feature.sku,quantity)"
+                                           ng-click="addProduct(feature.id,quantity)"
                                            ng-disabled="quantity == null || feature.quantity == '0'" value="Add">
                                             <i class="fa fa-shopping-cart"></i>
                                         </p>
+
                                 </div>
                                 <div class="clearfix">
                                 </div>
