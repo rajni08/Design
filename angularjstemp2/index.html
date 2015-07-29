@@ -135,8 +135,8 @@
             </div>
         </div>
         <div class="col-md-2" ng-controller="featured">
-            <i class="glyphicon glyphicon-shopping-cart homecart-icon"></i>
-            <span class="badge homecart-badge pull-right" ng-cloak>1</span>
+            <a ng-href="#/checkout/"> <i class="glyphicon glyphicon-shopping-cart homecart-icon"></i></a>
+            <span class="badge homecart-badge pull-right" ng-cloak>{{quantity}}</span>
         </div>
     </div>
 </div>

@@ -32,7 +32,7 @@ homeng.config(['$routeProvider',
         $routeProvider.
             when('/', {
                 templateUrl: 'partials/home.html',
-                controller: 'tabpagecntr'
+                controller: 'homepagecntr'
             }).
             when('/products/:code', {
                 templateUrl: 'partials/products.html',
@@ -94,7 +94,7 @@ homeng.controller('menumodify', ['$scope', function ($scope) {
 }]);
 
 //Home Featured product Controller
-homeng.controller('featured', function ($scope, $http, $routeParams) {
+homeng.controller('featured',['$scope', '$http', '$routeParams','$cookies','$cookieStore', function ($scope, $http, $routeParams,$cookies,$cookieStore) {
 
 
     var config = {
@@ -119,30 +119,61 @@ homeng.controller('featured', function ($scope, $http, $routeParams) {
         //$scope.code = code;
         $scope.id = prodsku;
         $scope.noofitems = noofitems;
-        //$scope.incartproducts = [];
-
-        $scope.dataObj =
-        {
-            "quantity": $scope.noofitems,
-            "productId": $scope.id
-        };
-
-        var moredata = angular.toJson($scope.dataObj);
-
-        $http.post('http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', moredata, config).success(function (data, config, status, headers) {
-
-            $scope.addingtoCart = data;
-
-        });
+        $scope.incartproducts = [];
 
 
+        $scope.cartcode = $cookieStore.get('cartcode');
+        console.log($scope.cartcode);
+
+       if($scope.cartcode=="" || $scope.cartcode==null) {
+
+           $scope.dataObj =
+           {
+               "quantity": $scope.noofitems,
+               "productId": $scope.id
+           };
+
+           var moredata = angular.toJson($scope.dataObj);
+
+           $http.post('http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', moredata, config).success(function (data, config, status, headers) {
+
+               $scope.addingtoCart = data;
+               //            $scope.addingtoCart.code
+               $scope.addingtoCart.quantity = data;
+
+               console.log($scope.addingtoCart.quantity);
+               $scope.cartcode = $cookieStore.put('cartcode', $scope.addingtoCart.code);
+
+
+           });
+
+       }else{
+
+           $scope.dataObj =
+           {
+               "code":$scope.cartcode,
+               "quantity": $scope.noofitems,
+               "productId": $scope.id
+           };
+
+           var moredata = angular.toJson($scope.dataObj);
+
+           $http.post('http://23.21.105.180/sm-shop/ecom/v0/cart/add/f487bdb31ea311e59561fb44642aa5bc/en?access_token=acc063fa-9df8-4a65-9401-332909d929f1', moredata, config).success(function (data, config, status, headers) {
+
+               $scope.addingtoCart = data;
+               //            $scope.addingtoCart.code
+
+               $scope.quantity =  $scope.addingtoCart.quantity;
+               console.log($scope.quantity);
+           });
+       }
     };
 
     // alert(prodesc_url);
 
-});
+}]);
 
-homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage', function ($scope, $http, $routeParams, $cookieStore, $localStorage) {
+homeng.controller('productcontroller', ['$scope', '$http', '$routeParams', '$cookies', '$cookieStore', '$localStorage', function ($scope, $http, $routeParams,$cookies, $cookieStore, $localStorage) {
 
     var code = $routeParams.code;
 
@@ -402,11 +433,25 @@ homeng.controller('logincontroller', function ($scope, $http) {
     }
 });
 //Login Controller
-homeng.controller('checkoutcntr', function ($scope, $http) {
+homeng.controller('checkoutcntr',['$scope', '$http', '$cookies', '$cookieStore', function ($scope, $http, $cookies, $cookieStore) {
 
-});
+    var config = {
+        headers: {'STORE_LOCATOR_HEADER': 'f487bdb31ea311e59561fb44642aa5bc'}
+    };
+    $scope.newcheck = $cookieStore.get('cartcode');
+   // console.log("checkput ",$scope.newcheck);
+
+    $http.get('http://23.21.105.180/sm-shop/ecom/v0/cart/f487bdb31ea311e59561fb44642aa5bc/en/'+ $scope.newcheck +'?access_token=acc063fa-9df8-4a65-9401-332909d929f1', config).success(function (data, config, status, headers) {
+        $scope.itemincarts = data;
+
+    }).
+        error(function (data, status, headers, config) {
+            $scope.itemincarts = 'Something Went Wrong';
+        });
+
+}]);
 //Login Controller
-homeng.controller('tabpagecntr', function ($scope, $http) {
+homeng.controller('homepagecntr', function ($scope, $http) {
 
 
 });
