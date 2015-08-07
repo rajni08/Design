@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse nav-innermenu">
+<nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -23,22 +23,21 @@
             <ul class="nav navbar-nav navbar-right" ng-controller="menucontroller" ng-cloak>
 
                 <li class="dropdown" ng-repeat="menu in menus">
-                    <a ng-href="#/products/{{menu.code}}/"
+                    <a ng-href="#/products/{{menu.code}}/" ng-class="{'dropdown-toggle': menu.menus}"
                        class="dropdown-toggle disabled" data-toggle="dropdown">
                         {{menu.description['name'] | uppercase}} <span ng-if="menu.childs" class="caret"></span>
                     </a>
                     <ul ng-if="menu.childs" class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                         <li class="dropdown-submenu" ng-repeat="submenu in menu.childs">
-                            <a  ng-href="#/products/{{submenu.code}}/">{{submenu.description['name']}}</a>
+                            <a tabindex="-1" ng-href="#/products/{{submenu.code}}/">{{submenu.description['name']}}</a>
                             <ul class="dropdown-menu" ng-if="submenu.childs">
                                 <li class="dropdown-submenu" ng-repeat="subofsub in submenu.childs">
-                                    <a ng-href="#/products/{{subofsub.code}}">{{subofsub.description['name']}}</a>
+                                    <a ng-href="#/products/{{subofsub.id}}">{{subofsub.description['name']}}</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li><a href="#/login/">Login/Register</a></li>
 
                 <!--<li class="prod-dropdown" ng-repeat="menu in menus" ng-class="{proddropdown: menu.menus}">-->
                 <!--<a ng-href="#/{{menu.action}}" ng-class="{'dropdown-toggle': menu.menus}"-->
@@ -73,7 +72,7 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container" ng-hide>
+<div class="container">
     <div class="row">
         <div class="col-md-12">
 

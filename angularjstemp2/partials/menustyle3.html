@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row">
+
+
+
+        <div class="col-md-9">
+
+            <div class="thumbnail">
+                <div ng-controller="slideShowController" class="imageslide " ng-switch='slideshow' ng-animate="'animate'">
+                    <div class="slider-content" ng-switch-when="1">
+                        <img src="http://farm9.staticflickr.com/8042/7918423710_e6dd168d7c_b.jpg">
+                    </div>
+                    <div class="slider-content" ng-switch-when="2">
+                        <img src="http://farm9.staticflickr.com/8449/7918424278_4835c85e7a_b.jpg">
+                    </div>
+                    <div class="slider-content" ng-switch-when="3">
+                        <img src="http://farm9.staticflickr.com/8457/7918424412_bb641455c7_b.jpg">
+                    </div>
+                    <div class="slider-content" ng-switch-when="4">
+                        <img src="http://farm9.staticflickr.com/8179/7918424842_c79f7e345c_b.jpg">
+
+                    </div>
+                </div>
+                <!----   <div class="caption-full">
+                   <h4 class="pull-right">$24.99</h4>
+                   <h4><a href="#">Product Name</a>
+                   </h4>
+                   <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                   <p>Want to make these reviews work? Check out
+                       <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
+                       </strong>over at maxoffsky.com!</p>
+                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+               </div>
+               <div class="ratings">
+                   <p class="pull-right">3 reviews</p>
+                   <p>
+                       <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star"></span>
+                       <span class="glyphicon glyphicon-star-empty"></span>
+                       4.0 stars
+                   </p>
+               </div> --------->
+            </div>
+
+
+
+        </div>
+
+        <div class="col-md-3" ng-controller="menucontroller">
+
+            <p class="lead">{{categories.description.name}}</p>
+            <ul class="dropdown-menu" id="parentMenu" role="menu" aria-labelledby="dropdownMenu"
+                ng-cloak>
+
+                <!-- Child Menu -->
+                <li class="dropdown-submenu right-aligned-menu" ng-repeat="menu in menus"><a
+                        href="#/products/{{menu.code}}/">{{menu.description['name'] |
+                    uppercase}}</a>
+                    <ul class="dropdown-menu" ng-if="menu.childs">
+
+                        <li class="dropdown-submenu right-aligned-submenu" ng-repeat="submenu in menu.childs"><a
+                                href="#/products/{{submenu.code}}/">{{submenu.description['name']}}</a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="subofsub in submenu.childs"><a href="#/products/{{subofsub.code}}/">{{subofsub.description['name']}}</a></li>
+
+                            </ul></li>
+
+                    </ul>
+                </li>
+            </ul>
+            <!--<div class="list-group">-->
+            <!---->
+
+            <!--&lt;!&ndash;<a class="list-group-item"  ng-click="myFilter = {category: 1}">Mobile</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="list-group-item"  ng-click="myFilter = {category: 2}">Tab</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="list-group-item" ng-click="myFilter = {category: 3}">Others</a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a class="list-group-item" ng-click="myFilter = null">All</a>&ndash;&gt;-->
+            <!--<a class="list-group-item" ng-repeat="category in categories.childs">-->
+
+            <!--{{ category.description.name }}-->
+
+            <!--</a>-->
+
+
+
+            <!--</div>-->
+        </div>
+
+    </div>
+</div>

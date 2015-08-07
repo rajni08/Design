@@ -11,6 +11,55 @@
 <!--</td>-->
 <!--</tr>-->
 <!--</table>-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"></a>
+            </div>
+            <div class="col-md-9 well">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 search-bar">
+
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
+
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-small" type="button" >
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <i class="glyphicon glyphicon-shopping-cart homecart-icon"></i>
+            <span class="badge homecart-badge pull-right">1</span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="slide-animate-container">
+
+        <div class="slide-animate" ng-include="template.url"></div>
+
+</div>
 
 <div class="container">
     <div class="row">
@@ -25,79 +74,69 @@
 
 
         <!-- Wrapper for slides -->
-        <div class="carousel-inner" ng-controller="featured">
+        <div class="carousel-inner" >
             <div class="item active">
                 <div class="row">
-                    <!--To get grey out-->
-                    <!--ng-class="{true:'greyed item', false:'item'}[feature.available]"-->
-                    <div class="col-sm-2" ng-repeat="feature in featuredpros">
+                    <div ng-repeat="product in [itemdatas] track by $index" >
+                        <div class="col-sm-2" ng-repeat="prod in product.products | filter:search ">
 
-
-                        <div class="col-item"  ng-class="{true:'item', false:'greyed item'}[feature.available]">
-                            <div class="overlay"></div>
-                            <div class="photo productimages">
-                                <div ng-if="feature.quantity != '0'">
-                                    <div class="ribbon-wrapper-green"><div class="ribbon-green">Sale</div></div>
-                                </div>
-                                <div ng-if="feature.quantity == '0'">
-                                    <div class="ribbon-wrapper-green"><div class="ribbon-gray">Out of stock</div></div>
-                                </div>
-                                <a ng-href="#/products/productdesc/{{feature.id}}/">
-
-                                    <img ng-show="feature.image.imageUrl != null"
-                                         src="{{feature.image.imageUrl}}"
-                                         class="img-responsive"
-                                         alt="{{feature.description.title}}" />
-                                    <img ng-show="feature.image.imageUrl == null" src="img/No_image_available.svg"
-                                         class="img-responsive"
-                                         alt="{{feature.description.title}}" />
-                                </a>
-
-                            </div>
-
-                            <div class="info">
-                                <div class="row">
-                                    <div class="price col-md-12">
-                                        <!--<a href="" tooltip-title="prod.description.name">{{prod.description.name | uppercase | cut:true:20:' ...'}}</a>-->
-                                        <!--<a href="#" tooltips="" tooltip-title="{{prod.description.name}}" tooltip-side="right">Right-->
-                                        <!--</a>-->
-                                        <a ng-href="#/products/productdesc/{{feature.id}}/"
-                                           title="{{feature.description.name}}" ng-class="tooltip">{{feature.description.name |
-                                            uppercase | cut:true:20:' ...'}}</a>
-
-                                        <!--<input type="hidden" ng-model="item.price" value="{{product.price}}">-->
-                                        <h5 class="price-text-color">{{feature.finalPrice}}
-                                            <!--<input type="hidden" ng-model="item.productname" value="{{product.productname}}">-->
-                                            <!--${{product.price}}--></h5>
+                            <div class="col-item">
+                                <div class="photo productimages">
+                                    <div ng-if="prod.quantity != '0'">
+                                        <div class="ribbon-wrapper-green"><div class="ribbon-green">Sale</div></div>
                                     </div>
+                                    <div ng-if="prod.quantity == '0'">
+                                        <div class="ribbon-wrapper-green"><div class="ribbon-gray">Out of stock</div></div>
+                                    </div>
+                                    <a ng-href="#/products/productdesc/{{prod.id}}/">
+
+                                        <img src="{{prod.image.imageUrl}}" class="img-responsive"
+                                             alt="{{prod.description.title}}" /></a>
 
                                 </div>
-                                <div class="separator clear-left">
 
-                                    <p class="btn-add" data-ng-init="quantity=feature.quantityOrderMinimum;">
-                                        <input type="number"  ng-model="quantity"
-                                               ng-disabled="prod.quantity == '0'"
-                                               class="form-control text-center"
-                                               value={{feature.quantityOrderMinimum}}
-                                               min={{feature.quantityOrderMinimum}}
-                                               max={{feature.quantityOrderMaximum}} ></p>
-                                    <p class="btn-details">
-                                        <!--ng-click="addToCart(product.id,product.price,product.productname,1)"-->
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="price col-md-12">
+                                            <!--<a href="" tooltip-title="prod.description.name">{{prod.description.name | uppercase | cut:true:20:' ...'}}</a>-->
+                                            <!--<a href="#" tooltips="" tooltip-title="{{prod.description.name}}" tooltip-side="right">Right-->
+                                            <!--</a>-->
+                                            <a ng-href="#/products/productdesc/{{prod.id}}/"
+                                               title="{{prod.description.name}}" ng-class="tooltip">{{prod.description.name |
+                                                uppercase | cut:true:20:' ...'}}</a>
 
-                                        <input type="button" class="hidden-sm btn btn-group-sm btn-primary"
-                                           ng-click="addProduct(feature.id,quantity)"
-                                           ng-disabled="quantity == null || feature.quantity == '0'" value="Add">
-                                            <i class="fa fa-shopping-cart"></i>
-                                        </p>
+                                            <!--<input type="hidden" ng-model="item.price" value="{{product.price}}">-->
+                                            <h5 class="price-text-color">{{prod.price}}
+                                                <!--<input type="hidden" ng-model="item.productname" value="{{product.productname}}">-->
+                                                <!--${{product.price}}--></h5>
+                                        </div>
 
-                                </div>
-                                <div class="clearfix">
+                                    </div>
+                                    <div class="separator clear-left">
+
+                                        <p class="btn-add" data-ng-init="quantity=prod.quantityOrderMinimum;">
+                                            <input type="number"  ng-model="quantity"
+                                                   ng-disabled="prod.quantity == '0'"
+                                                   class="form-control text-center"
+                                                   value={{prod.quantityOrderMinimum}}
+                                                   min={{prod.quantityOrderMinimum}}
+                                                   max={{prod.quantityOrderMaximum}}></p>
+                                        <p class="btn-details">
+
+                                            <!--ng-click="addToCart(product.id,product.price,product.productname,1)"-->
+
+                                            <a href="" class="hidden-sm btn btn-group-sm btn-primary"
+                                               ng-click="click(product,quantity)"
+                                               ng-disabled="quantity == null || prod.quantity == '0'">
+                                                <i class="fa fa-shopping-cart"></i>Add
+                                            </a></p>
+                                    </div>
+                                    <div class="clearfix">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
 
