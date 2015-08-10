@@ -1,13 +1,7 @@
 <!-- Page Content -->
 <div class="container">
 
-    <div class="row">
-
-
-
-
-
-
+    <div class="row" ng-controller="logincontroller">
 
         <div class="well">
 
@@ -23,12 +17,12 @@
 
                                 <div class="form-group col-lg-12">
                                     <label>Username</label>
-                                    <input type="" name="" class="form-control" id="" value="">
+                                    <input type="text" name="" class="form-control" id="" value="">
                                 </div>
 
                                 <div class="form-group col-lg-12">
                                     <label>Password</label>
-                                    <input type="" name="" class="form-control" id="" value="">
+                                    <input type="password" name="" class="form-control" id="" value="">
                                 </div>
 
                                 <div class="form-group col-lg-12">
@@ -36,47 +30,180 @@
                                 </div>
 
                             </div>
-
+                            
+                <form ng-submit="doRegister()">
                             <div class="col-md-6">
                                 <h3 class="dark-grey">Registration</h3>
 
-                                <div class="form-group col-lg-6">
-                                    <label>Password</label>
-                                    <input type="password" name="" class="form-control" id="" value="">
-                                </div>
 
                                 <div class="form-group col-lg-6">
-                                    <label>Repeat Password</label>
-                                    <input type="password" name="" class="form-control" id="" value="">
+                                    <label>First Name</label>
+                                    <input type="text" name="" ng-model="r_firstname"  class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Last Name</label>
+                                    <input type="text" name="" ng-model="r_lastname"  class="form-control"  value="">
                                 </div>
 
                                 <div class="form-group col-lg-12">
-                                    <label>Username</label>
-                                    <input type="" name="" class="form-control" id="" value="">
+                                    <label>Email/username</label>
+                                    <input type="text" name="" ng-model="r_username"  class="form-control" >
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Password</label>
+                                    <input type="text" name="" ng-model="r_password"  class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Confirm Password</label>
+                                    <input type="text" name="" ng-model="r_cpassword"  class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="checkbox-inline">
+                                        <input type="radio" ng-model="identify.gender"  value="M">
+                                        Male </label>
+                                    <label class="checkbox-inline">
+                                        <input type="radio" ng-model="identify.gender"  value="F">
+                                        Female </label>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="heading-address">Billing Address</label>
+
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Firstname</label>
+                                    <input type="text" name="" ng-model="rb_firstname" class="form-control"  value="">
                                 </div>
 
-
-
                                 <div class="form-group col-lg-6">
-                                    <label>Email Address</label>
-                                    <input type="" name="" class="form-control" id="" value="">
+                                    <label>Lastname</label>
+                                    <input type="text" name="" ng-model="rb_lastname" class="form-control"  value="">
                                 </div>
 
                                 <div class="form-group col-lg-6">
-                                    <label>Repeat Email Address</label>
-                                    <input type="" name="" class="form-control" id="" value="">
+                                    <label>BilstateOther</label>
+                                    <input type="text" name="" ng-model="rb_bilstateother" class="form-control"
+                                           value="">
                                 </div>
 
                                 <div class="form-group col-lg-6">
-                                    <label>Optional</label>
-                                    <input type="" name="" class="form-control" id="" value="">
+                                    <label>Company</label>
+                                    <input type="text" name="" ng-model="rb_company" class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Phone</label>
+                                    <input type="text" name="" ng-model="rb_phone" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-12">
+                                    <label>Address</label>
+                                    <input type="text" name="" ng-model="rb_address" class="form-control"  value="">
+
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>City</label>
+                                    <input type="text" name="" ng-model="rb_city" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>Postal Code</label>
+                                    <input type="text" name="" ng-model="rb_postalCode" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>State Province</label>
+                                    <input type="text" name="" ng-model="rb_stateprovince" class="form-control"
+                                           value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Is it Billing Address ?</label>
+                                    <input type="checkbox" name="" ng-model="rb_isitbill" class="form-control"
+                                           value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Zone</label>
+                                    <input type="text" name="" ng-model="rb_zone" class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Country</label>
+                                    <input type="text" name="" ng-model="rb_country" class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="heading-address">Delivery Address</label>
+
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>Firstname</label>
+                                    <input type="text" name="" ng-model="rd_firstname" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>Lastname</label>
+                                    <input type="text" name="" ng-model="rd_lastname" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>BilstateOther</label>
+                                    <input type="text" name="" ng-model="rd_bilstateother" class="form-control"
+                                           value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>Company</label>
+                                    <input type="text" name="" ng-model="rd_company" class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Phone</label>
+                                    <input type="text" name="" ng-model="rd_phone" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-12">
+                                    <label>Address</label>
+                                    <input type="text" name="" ng-model="rd_address" class="form-control"  value="">
+
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>City</label>
+                                    <input type="text" name="" ng-model="rd_city" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>Postal Code</label>
+                                    <input type="text" name="" ng-model="rd_postcode" class="form-control"  value="">
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>State Province</label>
+                                    <input type="text" name="" ng-model="rd_stateProvince" class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Is it Billing Address ?</label>
+                                    <input type="checkbox" name="" ng-model="rd_isitbill" class="form-control"
+                                           value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Zone</label>
+                                    <input type="text" name="" ng-model="rd_zone" class="form-control"  value="">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Country</label>
+                                    <input type="text" name="" ng-model="rd_country" class="form-control"  value="">
                                 </div>
 
                                 <div class="form-group col-lg-12">
 
                                     <button type="submit" class="btn btn-primary">Register</button>
                                 </div>
-                            </div>
+
+                                <div class="form-group col-lg-12" ng-if=="registered.message">
+                                    <span class="alert alert-success" >{{registered.message}}</span>
+                                </div>
+
+
+                               </div>
+                          </form>
                         </div>
 
                     </div>

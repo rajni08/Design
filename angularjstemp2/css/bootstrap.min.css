@@ -2124,7 +2124,8 @@ pre code {
     }
 
     .col-sm-2 {
-        width: 16.66666667%
+        /*width: 16.66666667%*/
+        width: 20%
     }
 
     .col-sm-1 {
@@ -3469,7 +3470,7 @@ select[multiple].form-group-lg .form-control, textarea.form-group-lg .form-contr
 
 .btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled], .btn-primary[disabled].active, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover {
     background-color: #000;
-    border-color: #fe8422
+    border-color: #000
 }
 
 .btn-primary .badge {

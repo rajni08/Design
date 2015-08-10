@@ -7,6 +7,9 @@
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
+h1{
+    color:#d58512;
+}
 
 .thumbnail img {
     width: 100%;
@@ -42,7 +45,8 @@ body {
 }
 
 .copyrights {
-
+    color: #ccc;
+    font-size: 11px;
     display: block;
     padding: 20px 0;
     position: relative;
@@ -185,6 +189,12 @@ height: 100px; width:88%; left:2%;
 
 .search-bar{
     margin-bottom: 2%;
+}
+
+.typeahead.dropdown-menu {
+    cursor: pointer;
+    width: 100%;
+    margin-top:15px;
 }
 /*********************************/
 /********** Search Page**********/
@@ -333,7 +343,11 @@ height: 100px; width:88%; left:2%;
     padding: 8px;
 
 }
-
+.heading-address {
+    background: #ccc none repeat scroll 0 0;
+    padding: 2%;
+    width: 100%;
+}
 
 .ribbon-wrapper-green {
     height: 77px;
@@ -557,10 +571,20 @@ ul.dropdown-cart li .item-right button{
     transition: width 4.25s linear;
 }
 
-nav{
-background-color: #f47b2a !important;
+.nav-mainmenuheader{
+background-color: #f8a119 !important;
+    border-top: 1px solid #f2f2f2;
+    box-shadow: 0 7px 20px -7px #ccc inset;
+    clear: both;
+    margin-top: 0;
+    overflow: hidden;
+    padding: 5px 5px;
 
 }
+.nav-innermenu{
+    background-color: #b67a44 !important;
+}
+
 .navbar-inverse .navbar-nav > li > a{
     color: #fff !important;
 }
@@ -638,6 +662,20 @@ h3.dark-grey {
     margin-top: 50px;
 }
 
+
+.item.greyed .overlay{
+    background-color: #eee;
+    bottom: 0;
+    height: 96%;
+    left: 0;
+    margin: 0 auto;
+    opacity: 0.7;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 87%;
+    z-index: 5;
+}
 /*********************************************
 					VIEW
 *********************************************/
@@ -756,6 +794,7 @@ h3.dark-grey {
     -webkit-border-radius: 0 6px 6px 6px;
     -moz-border-radius: 0 6px 6px;
     border-radius: 0 6px 6px 6px;
+    opacity: 0.85;
 }
 .dropdown-submenu>.dropdown-menu {
     top: 0;
@@ -858,7 +897,7 @@ li.dropdown:hover > .dropdown-submenu:hover .dropdown-menu{
 
 #parentMenu {
     display: block;
-    top: 52px;
+    /*top: 52px;*/
     width: 95%;
 }
 /* Helps position submenu */

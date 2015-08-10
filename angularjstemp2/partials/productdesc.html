@@ -1,35 +1,4 @@
 <!-- Page Content -->
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-        <div class="col-md-3">
-            <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"></a>
-        </div>
-        <div class="col-md-9 well">
-        </div>
-     </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 search-bar pull-right">
-
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Search" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container">
     <div class="content-wrapper">
         <div class="item-container">
@@ -43,13 +12,13 @@
                     </div>
 
                     <div class="container service1-items col-sm-2 col-md-2 pull-left">
-                    <center>
-                     <div ng-repeat="additionalimage in prodescdata.images">
-                    <a id="item-{{$index + 1}}" class="service1-item" >
-                    <img src="{{additionalimage.imageUrl}}" alt="">
-                    </a>
-                     </div>
-                    </center>
+                        <center>
+                            <div ng-repeat="additionalimage in prodescdata.images">
+                                <a id="item-{{$index + 1}}" class="service1-item" >
+                                    <img src="{{additionalimage.imageUrl}}" alt="">
+                                </a>
+                            </div>
+                        </center>
                     </div>
                     <div class="col-md-7">
                         <div class="product-title">{{prodescdata.description.name}}</div>
@@ -63,9 +32,22 @@
                         <div class="product-stock" ng-if="prodescdata.available==false">Out of Stock</div>
 
                         <div class="btn-group cart">
-                            <button type="button" class="btn btn-primary">
-                                Add to cart
-                            </button>
+
+                            <input type="number"  ng-model="quantity"
+                                   ng-disabled="prod.quantity == '0'"
+                                   class="form-control text-center small"
+                                   value={{prodescdata.quantityOrderMinimum}}
+                                   min={{prodescdata.quantityOrderMinimum}}
+                                   max={{prodescdata.quantityOrderMaximum}}>
+
+                            <a href="" class="hidden-sm btn btn-group-sm btn-primary"
+                               ng-click="addProduct(prodescdata.id,quantity)"
+                               ng-disabled="quantity == null || prodescdata.quantity == '0'">
+                                <i class="fa fa-shopping-cart"></i>Add
+                            </a>
+                            <!--<button type="button" class="btn btn-primary">-->
+                                <!--Add to cart-->
+                            <!--</button>-->
                         </div>
                         <hr>
 
@@ -83,19 +65,28 @@
 
         <div class="container-fluid">
             <div class="col-md-12 product-info">
-                <ul id="myTab" class="nav nav-tabs nav_tabs">
+                <ul id="myTab" class="nav nav-tabs nav_tabs" ng-init="tab = 1">
 
-                    <li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
+                    <li ng-class="{active: tab === 1}"><a href  ng-click="tab = 1 " >DESCRIPTION</a></li>
+                    <li ng-class="{active: tab === 2}"><a href ng-click="tab = 2 " >Review</a></li>
                     <!--<li><a href="#service-two" data-toggle="tab">PRODUCT INFO</a></li>-->
                     <!--<li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>-->
 
                 </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="service-one">
 
-                        <section class="container product-info">
-                            {{prodescdata.description.description}}
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active"  ng-show="tab === 1">
+                        <!--<div ng-bind-html="prodescdata.description.description"></div>-->
+
+                        <section class="container product-info"  ng-bind-html="prodescdata.description.description">
+
                         </section>
+
+                    </div>
+                    <div class="tab-pane fade in active"  ng-show="tab === 2">
+                        <!--<div ng-bind-html="prodescdata.description.description"></div>-->
+
+                       This is my reviews
 
                     </div>
                     <!--<div class="tab-pane fade" id="service-two">-->

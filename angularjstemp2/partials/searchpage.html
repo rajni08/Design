@@ -1,25 +1,7 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 search-bar">
-
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Page Content -->
 <div class="container">
 
-    <div class="row row-offcanvas row-offcanvas-left">
+    <div class="row row-offcanvas row-offcanvas-left" ng-controller="searchrescontroller">
         <div class="row-offcanvas row-offcanvas-right">
             <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebarLeft" role="navigation">
                 <p class="visible-xs">
@@ -40,14 +22,16 @@
                 </div><!--/.well -->
             </div><!--/span-->
 
-            <div class="col-xs-12 col-sm-8 cart-fixed-container">
-                <div class="row" ng-repeat="product in productdata | filter: search">
+            <div class="col-xs-12 col-sm-7 cart-fixed-container" >
+                <div class="row" ng-repeat="searc in searched track by $index | filter: search">
                     <div class="col-6 col-sm-6 col-lg-4">
-                        <img src="{{product.imageUrl}}" class="img-responsive">
+                        <img src="{{searc.image.imageUrl}}" class="img-responsive">
                     </div><!--/span-->
                     <div class="col-sm-6 col-lg-4">
-                        <h5>{{product.productname}}-{{product.id}}</h5>
-                        <p>Bootply is a playground for Bootstrap that enables developers and designers to test, prototype and create mockups using Bootstrap friendly HTML, CSS and Javascript. Bootstrap is a front-end framework that uses CSS and JavaScript to facilitate responsive Web design. </p>
+                        <h5>{{searc.description.name}}-{{searc.id}}</h5>
+                        <p>
+                            {{searc.description.description | cut:true:35:' ...'}}
+                        </p>
 
                     </div><!--/span-->
                     <div class="col-sm-6 col-lg-4">

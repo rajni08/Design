@@ -11,99 +11,13 @@
     <!--</td>-->
 <!--</tr>-->
 <!--</table>-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <a ng-href="http://localhost/angularjstemp2/#/"> <img src="http://enjoyfresh.eu/img/enjoy_fresh_logo.jpg"></a>
-            </div>
-            <div class="col-md-9 well">
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 search-bar">
 
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" ng-model="search" class="form-control input-lg" placeholder="Search" />
-
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button" >
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="container">
-    <div class="row" ng-controller="menucontroller" ng-cloak>
-
-
-        <div class="col-md-3">
-
-
-            <h3  style="position: relative;">{{categories.description.name}}</h3>
-            <ul class="dropdown-menu" id="parentMenu" role="menu" aria-labelledby="dropdownMenu" ng-cloak>
-
-                <!-- Child Menu -->
-                <li class="dropdown-submenu" ng-repeat="category in categories.childs"><a href="#/products/{{category.code}}/">{{category.description.name |
-                    uppercase}}</a>
-                    <ul class="dropdown-menu" ng-if="category.childs">
-
-                        <li class="dropdown-submenu" ng-repeat="cat in category.childs">
-                            <a href="#/products/{{cat.code}}/">{{cat.description.name}}</a>
-                        </li>
-
-                    </ul>
-                </li>
-            </ul>
-            <!--<div class="list-group">-->
-                <!---->
-
-                <!--&lt;!&ndash;<a class="list-group-item"  ng-click="myFilter = {category: 1}">Mobile</a>&ndash;&gt;-->
-                <!--&lt;!&ndash;<a class="list-group-item"  ng-click="myFilter = {category: 2}">Tab</a>&ndash;&gt;-->
-                <!--&lt;!&ndash;<a class="list-group-item" ng-click="myFilter = {category: 3}">Others</a>&ndash;&gt;-->
-                <!--&lt;!&ndash;<a class="list-group-item" ng-click="myFilter = null">All</a>&ndash;&gt;-->
-                <!--<a class="list-group-item" ng-repeat="category in categories.childs">-->
-
-                    <!--{{ category.description.name }}-->
-
-                <!--</a>-->
-
-
-
-            <!--</div>-->
-        </div>
-
-        <div class="col-md-9">
-
-            <div class="thumbnail">
-                <img alt="" src="http://placehold.it/800x300" class="img-responsive">
-            </div>
-
-
-
-        </div>
-
-    </div>
-</div>
 <div class="container">
     <div class="row">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" ng-controller="menucontroller">
 
-
+                <h1>{{categories.description.name}}</h1>
                 <hr>
             </div>
 
@@ -115,7 +29,8 @@
             <div class="item active">
                 <div class="row">
                     <div ng-repeat="product in [itemdatas] track by $index" >
-                      <div class="col-sm-2" ng-repeat="prod in product.products | filter:search ">
+                      <div class="col-sm-2" ng-repeat="prod in product.products | filter:search " ng-class="{true:'item', false:'greyed item'}[prod.available]">
+                          <div class="overlay"></div>
 
                             <div class="col-item">
                                 <div class="photo productimages">
@@ -125,10 +40,19 @@
                                     <div ng-if="prod.quantity == '0'">
                                     <div class="ribbon-wrapper-green"><div class="ribbon-gray">Out of stock</div></div>
                                     </div>
+                                    <p ng-if="messagetoshow.id == prod.id"
+                                       style="position: absolute;background-color: #bce8f1;padding: 8px;
+                                        width: 87%;">{{messagetoshow
+                                        .msg}}
+                                    </p>
                                     <a ng-href="#/products/productdesc/{{prod.id}}/">
-
-                                        <img src="{{prod.image.imageUrl}}" class="img-responsive"
-                                             alt="{{prod.description.title}}" /></a>
+                                        <img ng-show="prod.image.imageUrl != null" src="{{prod.image.imageUrl}}"
+                                             class="img-responsive"
+                                             alt="{{prod.description.title}}" />
+                                        <img ng-show="prod.image.imageUrl == null" src="img/No_image_available.svg"
+                                             class="img-responsive"
+                                             alt="{{feature.description.title}}" />
+                                    </a>
 
                                 </div>
 
@@ -143,9 +67,9 @@
                                                 uppercase | cut:true:20:' ...'}}</a>
 
                                             <!--<input type="hidden" ng-model="item.price" value="{{product.price}}">-->
-                                            <h5 class="price-text-color">{{prod.price}}
+                                            <h5 class="price-text-color">{{prod.finalPrice}}
                                                 <!--<input type="hidden" ng-model="item.productname" value="{{product.productname}}">-->
-                                                <!--${{product.price}}--></h5>
+                                                <!--${{product.price}}--><span class="originalPrice pull-right">{{prod.originalPrice}}</span></h5>
                                         </div>
 
                                     </div>
@@ -163,7 +87,7 @@
                                             <!--ng-click="addToCart(product.id,product.price,product.productname,1)"-->
 
                                     <a href="" class="hidden-sm btn btn-group-sm btn-primary"
-                                       ng-click="click(product,quantity)"
+                                       ng-click="addProduct(prod.id,quantity)"
                                        ng-disabled="quantity == null || prod.quantity == '0'">
                                         <i class="fa fa-shopping-cart"></i>Add
                                             </a></p>
